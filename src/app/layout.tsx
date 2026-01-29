@@ -12,7 +12,7 @@ const sourceSans = Source_Sans_3({
 });
 
 const ebGaramond = EB_Garamond({
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   subsets: ["latin"],
   variable: "--font-eb-garamond",
   display: 'swap',
