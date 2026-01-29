@@ -28,7 +28,7 @@ export default function Hero() {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-[10px] sm:text-xs md:text-sm tracking-[0.25em] uppercase mb-10 md:mb-12 text-atlas-dark/70">
+          <p className="text-[10px] sm:text-xs md:text-sm font-serif tracking-[0.25em] uppercase mb-10 md:mb-12 text-atlas-dark/70">
             PRIVATE WEALTH & LEGACY OFFICE
           </p>
 

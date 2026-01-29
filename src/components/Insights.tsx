@@ -75,7 +75,7 @@ export default function Insights() {
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
           </svg>
-          <h2 className="text-xs tracking-[0.3em] uppercase text-atlas-dark/70">
+          <h2 className="text-xs font-serif tracking-[0.3em] uppercase text-atlas-dark/70">
             INSIGHTS
           </h2>
         </motion.div>
@@ -100,17 +100,17 @@ export default function Insights() {
                 {/* Content */}
                 <div className="flex-1">
                   {/* Category and date */}
-                  <p className="text-[10px] tracking-widest uppercase text-atlas-dark/40 mb-3">
+                  <p className="text-[10px] font-serif tracking-widest uppercase text-atlas-dark/40 mb-3">
                     {insight.category} · {insight.date}
                   </p>
 
                   {/* Title */}
                   <h3 className="text-xl md:text-2xl font-serif font-normal mb-4 text-atlas-dark group-hover:text-atlas-gold transition-colors duration-300">
-                    <Link href={insight.link}>{insight.title}</Link>
+                    <Link href={insight.link} className="no-underline text-atlas-dark group-hover:text-atlas-gold">{insight.title}</Link>
                   </h3>
 
                   {/* Excerpt */}
-                  <p className="text-sm leading-relaxed text-atlas-dark/60 mb-4">
+                  <p className="text-sm font-serif leading-relaxed text-atlas-dark/60 mb-4">
                     {insight.excerpt}
                   </p>
 

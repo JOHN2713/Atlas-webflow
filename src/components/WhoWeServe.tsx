@@ -83,7 +83,7 @@ export default function WhoWeServe() {
             <svg className="w-4 h-4 text-atlas-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="12" cy="12" r="10" />
             </svg>
-            <h2 className="text-[10px] tracking-[0.3em] uppercase text-atlas-dark/60">
+            <h2 className="text-[10px] font-serif tracking-[0.3em] uppercase text-atlas-dark/60">
               WHO WE SERVE
             </h2>
           </div>
@@ -133,7 +133,7 @@ export default function WhoWeServe() {
                 <h4 className="text-base font-serif mb-4 text-atlas-dark leading-tight">
                   {client.title}
                 </h4>
-                <p className="text-sm text-atlas-dark/60 leading-relaxed">
+                <p className="text-sm font-serif text-atlas-dark/60 leading-relaxed">
                   {client.description}
                 </p>
               </motion.div>

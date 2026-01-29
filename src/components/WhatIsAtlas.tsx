@@ -18,7 +18,7 @@ export default function WhatIsAtlas() {
             <svg className="w-5 h-5 text-atlas-primary/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6l-8-4z" />
             </svg>
-            <h2 className="text-sm tracking-[0.3em] uppercase font-light text-atlas-primary/80">
+            <h2 className="text-sm font-serif tracking-[0.3em] uppercase font-light text-atlas-primary/80">
               WHAT IS ATLAS
             </h2>
           </div>
@@ -49,7 +49,7 @@ export default function WhatIsAtlas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl font-light leading-relaxed text-atlas-primary/90"
+              className="text-lg md:text-xl font-serif font-light leading-relaxed text-atlas-primary/90"
             >
               We do not sell financial products. We represent judgment, structure, and
               stewardship of capital across generations.
@@ -66,7 +66,7 @@ export default function WhatIsAtlas() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-atlas-primary/60 hover:text-atlas-primary transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 text-xs font-serif tracking-[0.2em] uppercase text-atlas-primary/60 hover:text-atlas-primary transition-colors duration-300 group no-underline"
             >
               TALK TO AN EXPERT
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>

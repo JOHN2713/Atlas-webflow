@@ -88,7 +88,7 @@ export default function Navigation() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block py-3 text-sm tracking-widest hover:text-atlas-gold transition-colors duration-300"
+                  className="block py-3 text-sm font-serif tracking-widest text-atlas-dark hover:text-atlas-gold transition-colors duration-300 no-underline"
                 >
                   {link.name}
                 </Link>

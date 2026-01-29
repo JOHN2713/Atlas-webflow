@@ -18,7 +18,7 @@ export default function ContactCTA() {
             <svg className="w-5 h-5 text-atlas-primary/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
-            <h2 className="text-sm tracking-[0.3em] uppercase text-atlas-primary/80">
+            <h2 className="text-sm font-serif tracking-[0.3em] uppercase text-atlas-primary/80">
               BEGIN A CONVERSATION
             </h2>
           </div>
@@ -34,7 +34,7 @@ export default function ContactCTA() {
               Engagements begin with a conversation.
             </p>
             
-            <p className="text-base md:text-lg text-atlas-primary/70 mb-16">
+            <p className="text-base md:text-lg font-serif text-atlas-primary/70 mb-16">
               All inquiries are reviewed with discretion.
             </p>
           </motion.div>

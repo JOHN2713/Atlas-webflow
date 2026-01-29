@@ -36,7 +36,7 @@ export default function Principles() {
               className="relative"
             >
               {/* Number on the left */}
-              <div className="absolute -left-4 md:-left-20 top-0 text-xs tracking-widest text-atlas-dark/20">
+              <div className="absolute -left-4 md:-left-20 top-0 text-xs font-serif tracking-widest text-atlas-dark/20">
                 {principle.number}
               </div>
 
