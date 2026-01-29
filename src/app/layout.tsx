@@ -39,6 +39,7 @@ export default function RootLayout({
       >
         <DevLinkProvider>
           {children}
+        </DevLinkProvider>
       </body>
     </html>
   );
