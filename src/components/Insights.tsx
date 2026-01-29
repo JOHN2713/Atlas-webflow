@@ -117,7 +117,7 @@ export default function Insights() {
                   {/* Read more link */}
                   <Link
                     href={insight.link}
-                    className="inline-flex items-center gap-2 text-xs tracking-wider text-atlas-dark/60 group-hover:text-atlas-gold transition-colors duration-300 group/link"
+                    className="inline-flex items-center gap-2 text-xs font-serif tracking-wider text-atlas-dark/60 group-hover:text-atlas-gold transition-colors duration-300 group/link no-underline"
                   >
                     Read article
                     <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
@@ -137,7 +137,7 @@ export default function Insights() {
         >
           <Link
             href="/insights"
-            className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-atlas-dark/60 hover:text-atlas-dark transition-colors duration-300 group"
+            className="inline-flex items-center gap-2 text-xs font-serif tracking-[0.2em] uppercase text-atlas-dark/60 hover:text-atlas-dark transition-colors duration-300 group no-underline"
           >
             VIEW ALL PERSPECTIVES
             <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>

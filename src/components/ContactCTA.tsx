@@ -48,9 +48,9 @@ export default function ContactCTA() {
           >
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 border border-atlas-primary text-atlas-primary px-8 md:px-10 py-3 md:py-4 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-atlas-primary hover:text-atlas-dark group"
+              className="inline-flex items-center gap-3 border border-atlas-primary text-atlas-primary px-8 md:px-10 py-3 md:py-4 text-xs font-serif tracking-[0.2em] uppercase transition-all duration-300 hover:bg-atlas-primary hover:text-atlas-dark group no-underline"
             >
-              PRIVATE INQUIRY
+              TALK TO AN EXPERT
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </Link>
           </motion.div>

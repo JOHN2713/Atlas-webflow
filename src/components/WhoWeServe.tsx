@@ -150,7 +150,7 @@ export default function WhoWeServe() {
           >
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-atlas-gold hover:text-atlas-dark transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 text-[10px] font-serif tracking-[0.3em] uppercase text-atlas-gold hover:text-atlas-dark transition-colors duration-300 group no-underline"
             >
               VIEW SERVICES
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>

@@ -26,7 +26,7 @@ export default function Navigation() {
           >
             <Link
               href="/"
-              className="text-2xl tracking-[0.3em] font-light hover:text-atlas-gold transition-colors duration-300"
+              className="text-2xl tracking-[0.3em] font-serif font-light text-atlas-dark hover:text-atlas-gold transition-colors duration-300 no-underline"
             >
               ATLAS
             </Link>
@@ -43,7 +43,7 @@ export default function Navigation() {
               >
                 <Link
                   href={link.href}
-                  className="text-sm tracking-widest hover:text-atlas-gold transition-colors duration-300"
+                  className="text-sm tracking-widest font-serif text-atlas-dark hover:text-atlas-gold transition-colors duration-300 no-underline"
                 >
                   {link.name}
                 </Link>

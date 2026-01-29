@@ -56,10 +56,20 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-xs sm:text-sm tracking-wide mb-12 md:mb-16 text-atlas-dark/60"
+            className="text-xs sm:text-sm font-serif tracking-wide mb-8 md:mb-10 text-atlas-dark/60"
           >
             Founded & led by Gonzalo Martinez
           </motion.p>
+
+          {/* Decorative vertical line */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="flex justify-center mb-8 md:mb-10"
+          >
+            <div className="h-16 w-px bg-atlas-dark/20"></div>
+          </motion.div>
         </motion.div>
 
         {/* CTA Buttons */}
@@ -72,7 +82,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 border border-atlas-dark px-6 sm:px-8 py-3 text-[10px] sm:text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-atlas-dark hover:text-atlas-primary group"
+              className="inline-flex items-center gap-2 border border-atlas-dark px-8 py-3 text-xs font-serif tracking-[0.2em] uppercase text-atlas-dark transition-all duration-300 hover:bg-atlas-dark hover:text-atlas-primary group no-underline"
             >
               TALK TO AN EXPERT
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
