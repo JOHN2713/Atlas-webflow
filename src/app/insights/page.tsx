@@ -131,7 +131,7 @@ export default function Insights() {
                       {/* Read more link */}
                       <a
                         href={insight.link}
-                        className="inline-flex items-center gap-2 text-xs tracking-wider text-atlas-dark/60 group-hover:text-atlas-gold transition-colors duration-300 no-underline group/link"
+                        className="inline-flex items-center gap-2 font-serif text-xs tracking-wider text-atlas-dark/60 group-hover:text-atlas-gold transition-colors duration-300 no-underline group/link"
                       >
                         Read article
                         <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
@@ -149,7 +149,7 @@ export default function Insights() {
           <div className="container mx-auto max-w-4xl px-6 md:px-12 text-center">
             <a
               href="/contact"
-              className="inline-flex items-center gap-3 border border-atlas-dark px-8 md:px-10 py-3 md:py-4 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-atlas-dark hover:text-atlas-primary group text-atlas-dark no-underline"
+              className="inline-flex items-center gap-3 font-serif border border-atlas-dark px-8 md:px-10 py-3 md:py-4 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-atlas-dark hover:text-atlas-primary group text-atlas-dark no-underline"
             >
               TALK TO AN EXPERT
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>

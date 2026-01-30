@@ -44,7 +44,7 @@ export default function Philosophy() {
             <div className="mt-12 pt-10 border-t border-atlas-dark/10">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase transition-colors duration-300 group text-atlas-dark/50 hover:text-atlas-dark no-underline"
+                className="inline-flex items-center gap-2 font-serif text-xs tracking-[0.2em] uppercase transition-colors duration-300 group text-atlas-dark/50 hover:text-atlas-dark no-underline"
               >
                 TALK TO AN EXPERT
                 <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
