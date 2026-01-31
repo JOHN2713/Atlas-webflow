@@ -6,7 +6,7 @@ export default function Footer() {
   const links = [
     { name: 'PHILOSOPHY', href: '/philosophy' },
     { name: 'OUR SERVICES', href: '/services' },
-    { name: 'INSIGHTS', href: '/insights' },
+    { name: 'INSIGHTS', href: 'https://www.atlaswealthlegacy.com/insights' },
     { name: 'ABOUT', href: '/about' },
     { name: 'CONTACT', href: 'https://www.atlaswealthlegacy.com/contact-us' },
   ];
