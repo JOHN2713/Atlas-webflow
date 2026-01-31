@@ -71,7 +71,7 @@ export default function Principles() {
           className="text-center md:text-left md:pl-24"
         >
           <Link
-            href="/contact"
+            href="https://www.atlaswealthlegacy.com/contact-us"
             className="inline-flex items-center gap-2 text-xs font-serif tracking-[0.2em] uppercase text-atlas-dark/60 hover:text-atlas-dark transition-colors duration-300 group no-underline"
           >
             TALK TO AN EXPERT

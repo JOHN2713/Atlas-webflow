@@ -65,7 +65,7 @@ export default function WhatIsAtlas() {
             className="mt-16"
           >
             <Link
-              href="/contact"
+              href="https://www.atlaswealthlegacy.com/contact-us"
               className="inline-flex items-center gap-2 text-xs font-serif tracking-[0.2em] uppercase text-atlas-primary/60 hover:text-atlas-primary transition-colors duration-300 group no-underline"
             >
               TALK TO AN EXPERT

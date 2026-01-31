@@ -8,7 +8,7 @@ export default function Footer() {
     { name: 'OUR SERVICES', href: '/services' },
     { name: 'INSIGHTS', href: '/insights' },
     { name: 'ABOUT', href: '/about' },
-    { name: 'CONTACT', href: '/contact' },
+    { name: 'CONTACT', href: 'https://www.atlaswealthlegacy.com/contact-us' },
   ];
 
   return (

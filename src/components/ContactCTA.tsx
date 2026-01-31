@@ -47,7 +47,7 @@ export default function ContactCTA() {
             transition={{ delay: 0.4 }}
           >
             <Link
-              href="/contact"
+              href="https://www.atlaswealthlegacy.com/contact-us"
               className="inline-flex items-center gap-3 border border-atlas-primary text-atlas-primary px-8 md:px-10 py-3 md:py-4 text-xs font-serif tracking-[0.2em] uppercase transition-all duration-300 hover:bg-atlas-primary hover:text-atlas-dark group no-underline"
             >
               TALK TO AN EXPERT

@@ -81,7 +81,7 @@ export default function Hero() {
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Link
-              href="/contact"
+              href="https://www.atlaswealthlegacy.com/contact-us"
               className="inline-flex items-center gap-2 border border-atlas-dark px-8 py-3 text-xs font-serif tracking-[0.2em] uppercase text-atlas-dark transition-all duration-300 hover:bg-atlas-dark hover:text-atlas-primary group no-underline"
             >
               TALK TO AN EXPERT

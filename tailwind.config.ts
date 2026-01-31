@@ -16,7 +16,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-source-sans)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-eb-garamond)', 'Georgia', 'serif'],
+        serif: ['var(--font-pt-serif)', 'Georgia', 'serif'],
         display: ['CameraPlainVariable', 'var(--font-source-sans)', 'sans-serif'],
       },
     },

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Source_Sans_3 } from "next/font/google";
+import { PT_Serif, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { DevLinkProvider } from "@/devlink/DevLinkProvider";
 
@@ -11,10 +11,10 @@ const sourceSans = Source_Sans_3({
   display: 'swap',
 });
 
-const ebGaramond = EB_Garamond({
-  weight: ['400', '500', '600', '700', '800'],
+const ptSerif = PT_Serif({
+  weight: ['400', '700'],
   subsets: ["latin"],
-  variable: "--font-eb-garamond",
+  variable: "--font-pt-serif",
   display: 'swap',
 });
 
@@ -35,7 +35,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`${sourceSans.variable} ${ebGaramond.variable} antialiased bg-atlas-primary text-atlas-dark`}
+        className={`${sourceSans.variable} ${ptSerif.variable} antialiased bg-atlas-primary text-atlas-dark`}
       >
         <DevLinkProvider>
           {children}
