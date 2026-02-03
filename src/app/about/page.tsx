@@ -37,7 +37,7 @@ export default function About() {
               We do not sell financial products. We do not manage assets in the traditional sense. We do not seek to maximize assets under management or client count. Our model is fundamentally different because our objectives are fundamentally different.
             </p>
             <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-atlas-dark/60 font-serif">
-              ATLAS exists to provide structure, governance, and clarity to individuals and families who have already achieved significant wealth. Our role is to help them preserve and transfer that wealth across generations—not through aggressive strategies or speculative investments, but through careful architecture and disciplined stewardship.
+              ATLAS exists to provide structure, governance, and clarity to individuals and families who have already achieved significant wealth. Our role is to help them preserve and transfer that wealth across generations, not through aggressive strategies or speculative investments, but through careful architecture and disciplined stewardship.
             </p>
             <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-atlas-dark/60 font-serif">
               The platform brings together expertise in capital structure, family governance, intergenerational planning, and strategic advisory. Each engagement is tailored to the specific circumstances, objectives, and values of the families we serve.
@@ -140,7 +140,7 @@ export default function About() {
 
               <div className="space-y-4 text-base md:text-lg leading-relaxed text-atlas-dark/60">
                 <p className="font-serif">
-                  Gonzalo Martinez founded ATLAS to address a gap he observed in how significant wealth is managed and transferred across generations. After two decades working with ultra-high-net-worth families across the Americas and Europe, he recognized that the industry's incentives were misaligned with the long-term interests of the families it served.
+                  Gonzalo Martinez founded ATLAS to address a gap he observed in how significant wealth is managed and transferred across generations. After two decades working with ultra-high-net-worth families across the Americas, he recognized that the industry's incentives were misaligned with the long-term interests of the families it served.
                 </p>
                 <p className="font-serif">
                   ATLAS represents his vision for a different approach: one focused on structure over speculation, governance over transactions, and multi-generational thinking over quarterly performance.
