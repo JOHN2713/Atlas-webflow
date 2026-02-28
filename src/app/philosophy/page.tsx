@@ -9,13 +9,13 @@ export default function Philosophy() {
       <Navigation />
       <main>
         {/* Hero Section */}
-        <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+        <section className="pt-32 pb-16 md:pt-40 md:pb-12">
           <div className="container mx-auto max-w-5xl px-6 md:px-12">
             <div className="opacity-0 animate-fadeIn">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 md:mb-8 text-atlas-dark">
                 Philosophy
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl text-atlas-dark/70 font-serif font-light max-w-3xl leading-relaxed">
+              <p className="text-lg md:text-xl lg:text-xl text-atlas-dark/70 font-serif font-light max-w-3xl leading-relaxed">
                 The principles that guide our work and the convictions that shape our counsel.
               </p>
             </div>
