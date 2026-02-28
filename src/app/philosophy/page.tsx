@@ -43,7 +43,7 @@ export default function Philosophy() {
 
             <div className="mt-12 pt-10 border-t border-atlas-dark/10">
               <a
-                href="/contact"
+                href="https://www.atlaswealthlegacy.com/contact-us"
                 className="inline-flex items-center gap-2 font-serif text-xs tracking-[0.2em] uppercase transition-colors duration-300 group text-atlas-dark/50 hover:text-atlas-dark no-underline"
               >
                 TALK TO AN EXPERT
@@ -105,7 +105,7 @@ export default function Philosophy() {
 
             <div className="mt-12 pt-10 border-t border-atlas-dark/10">
               <a
-                href="/contact"
+                href="https://www.atlaswealthlegacy.com/contact-us"
                 className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase transition-colors duration-300 group text-atlas-dark/50 hover:text-atlas-dark no-underline"
               >
                 TALK TO AN EXPERT
@@ -136,7 +136,7 @@ export default function Philosophy() {
 
             <div className="mt-12 pt-10 border-t border-atlas-primary/20">
               <a
-                href="/contact"
+                href="https://www.atlaswealthlegacy.com/contact-us"
                 className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase transition-colors duration-300 group text-atlas-primary/60 hover:text-atlas-primary no-underline"
               >
                 TALK TO AN EXPERT
@@ -164,7 +164,7 @@ export default function Philosophy() {
 
             <div className="mt-12 pt-10 border-t border-atlas-dark/10">
               <a
-                href="/contact"
+                href="https://www.atlaswealthlegacy.com/contact-us"
                 className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase transition-colors duration-300 group text-atlas-dark/50 hover:text-atlas-dark no-underline"
               >
                 TALK TO AN EXPERT
@@ -181,7 +181,7 @@ export default function Philosophy() {
               These principles are not strategies. They are convictions. They guide every conversation, every recommendation, and every relationship we build.
             </p>
             <a
-              href="/contact"
+              href="https://www.atlaswealthlegacy.com/contact-us"
               className="inline-flex items-center gap-3 border border-atlas-dark px-8 md:px-10 py-3 md:py-4 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-atlas-dark hover:text-atlas-primary group text-atlas-dark no-underline"
             >
               TALK TO AN EXPERT

@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Private Wealth — Investment Profile Assessment</title>
+<meta name="description" content="Investment Profile & Risk Assessment — Atlas Private Wealth & Legacy Office">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B2A4A;--navy-light:#2A3D66;--navy-90:rgba(27,42,74,.9);--white:#F7F3ED;--pure-white:#FFFFFF;--light-bg:#EBE7E0;--gray:#6B7280;--gray-light:#E5E7EB;--gray-lighter:#F1F5F9;--text:#1E293B;--text-light:#475569;--green:#16A34A;--red:#DC2626;--serif:'Cormorant Garamond',Georgia,serif;--sans:'DM Sans',-apple-system,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden}
+::selection{background:var(--navy);color:var(--white)}
+input[type="range"]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:#D1D5DB;outline:none;cursor:pointer}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--navy);border:3px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer;transition:transform .15s}
+input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--navy);border:3px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes drawLine{from{width:0}to{width:60px}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+.screen{display:none;opacity:0;transition:opacity .3s ease}.screen.active{display:block;opacity:1}
+
+/* Language Toggle */
+.lang-toggle{position:fixed;top:16px;right:16px;z-index:200;display:flex;background:rgba(255,255,255,.95);border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.1);border:1px solid var(--gray-light);backdrop-filter:blur(8px)}
+.lang-btn{padding:8px 16px;font-family:var(--sans);font-size:12px;font-weight:700;border:none;cursor:pointer;transition:all .2s;letter-spacing:1px;background:transparent;color:var(--gray)}
+.lang-btn.active{background:var(--navy);color:var(--white)}
+.lang-toggle-dark{position:absolute;top:16px;right:16px;z-index:200}
+.lang-toggle-dark .lang-btn{color:rgba(255,255,255,.5)}
+.lang-toggle-dark .lang-btn.active{background:rgba(255,255,255,.15);color:var(--white)}
+
+/* Cover / Welcome */
+.welcome{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 80px;text-align:center;background:var(--white);position:relative}
+.welcome-logo{font-family:var(--serif);font-size:clamp(38px,8vw,54px);font-weight:300;color:var(--navy);letter-spacing:16px;margin-bottom:16px;animation:fadeUp .8s ease}
+.welcome-line{width:0;height:1px;background:var(--navy);margin:0 auto 16px;animation:drawLine .6s .3s ease forwards}
+.welcome-sub{font-family:var(--sans);font-size:11px;color:var(--navy);letter-spacing:5px;text-transform:uppercase;margin-bottom:8px;opacity:0;animation:fadeUp .8s .2s ease forwards}
+.welcome-tagline{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--gray);margin-bottom:48px;opacity:0;animation:fadeUp .8s .3s ease forwards}
+.welcome-title{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:600;color:var(--navy);margin-bottom:6px;opacity:0;animation:fadeUp .8s .35s ease forwards}
+.welcome-title2{font-family:var(--sans);font-size:15px;color:var(--navy);margin-bottom:36px;opacity:0;animation:fadeUp .8s .4s ease forwards}
+.welcome-form{max-width:380px;width:100%;opacity:0;animation:fadeUp .8s .5s ease forwards}
+.form-group{margin-bottom:16px;text-align:left}
+.form-label{font-size:11px;font-weight:600;color:var(--navy);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block}
+.form-input{width:100%;padding:13px 16px;border:2px solid var(--gray-light);border-radius:8px;font-family:var(--sans);font-size:14px;color:var(--text);transition:border-color .2s;outline:none;background:var(--pure-white)}
+.form-input:focus{border-color:var(--navy)}
+.form-input::placeholder{color:#94A3B8}
+.welcome-kpis{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin:32px 0;opacity:0;animation:fadeUp .8s .55s ease forwards}
+.kpi-num{font-size:28px;font-weight:800;color:var(--navy)}.kpi-label{font-size:11px;color:var(--gray);margin-top:2px}
+.btn-start{font-family:var(--sans);font-size:13px;font-weight:700;background:var(--navy);color:var(--white);border:none;border-radius:8px;padding:15px 48px;cursor:pointer;letter-spacing:2px;text-transform:uppercase;transition:all .3s;width:100%;max-width:380px;opacity:0;animation:fadeUp .8s .6s ease forwards}
+.btn-start:hover{background:var(--navy-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,42,74,.25)}
+.btn-start:disabled{background:#CBD5E1;cursor:default;transform:none;box-shadow:none}
+
+/* Footer */
+.footer{position:fixed;bottom:0;left:0;right:0;height:44px;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:100}
+.footer span{font-size:10px;color:rgba(255,255,255,.55);letter-spacing:1px}
+
+/* Topbar */
+.topbar{background:var(--navy);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:90}
+.topbar-logo{font-family:var(--serif);font-size:17px;color:var(--white);letter-spacing:6px;font-weight:300}
+.topbar-info{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1px}
+.back-btn{font-size:11px;color:rgba(255,255,255,.7);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;cursor:pointer}
+.back-btn:hover{color:var(--white)}
+.progress-wrap{width:100%;height:3px;background:var(--gray-light);position:sticky;top:46px;z-index:89}
+.progress-bar{height:100%;background:var(--navy);transition:width .6s cubic-bezier(.4,0,.2,1)}
+
+/* Content */
+.content{max-width:700px;margin:0 auto;padding:32px 20px 100px}
+.section-tag{font-size:11px;letter-spacing:4px;color:var(--navy);text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.section-line{width:40px;height:1.5px;background:var(--navy);margin-bottom:16px}
+.section-title{font-family:var(--serif);font-size:clamp(21px,4vw,26px);font-weight:600;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.how-to{background:var(--light-bg);border-radius:10px;padding:14px 18px;margin-bottom:28px;border-left:3px solid var(--navy)}
+.how-to p{font-size:13px;color:var(--text-light);line-height:1.6}
+
+/* Questions */
+.q-block{margin-bottom:36px;animation:slideIn .4s ease both}
+.q-header{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.q-num{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--navy);opacity:.18;line-height:1;min-width:36px;flex-shrink:0}
+.q-text{font-size:14.5px;color:var(--text);line-height:1.6;font-weight:500;padding-top:4px}
+.opts{display:flex;flex-direction:column;gap:7px;padding-left:48px}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;padding:12px 16px;border-radius:10px;border:2px solid var(--gray-light);background:var(--pure-white);cursor:pointer;text-align:left;transition:all .2s;font-family:var(--sans)}
+.opt:hover{border-color:#94A3B8;background:#FAFBFC}
+.opt.sel{border-color:var(--navy);background:#EEF2FF}
+.opt-l{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--gray-lighter);color:var(--navy);transition:all .2s;flex-shrink:0}
+.opt.sel .opt-l{background:var(--navy);color:var(--white)}
+.opt-t{font-size:13.5px;color:var(--text);line-height:1.5}
+.opt.sel .opt-t{font-weight:600}
+
+/* Section B */
+.b-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--gray-light)}
+.b-tbl{width:100%;border-collapse:collapse;min-width:520px}
+.b-tbl thead th{background:var(--navy);color:var(--white);padding:10px 8px;font-size:10.5px;font-weight:700;text-align:center}
+.b-tbl td{padding:9px 8px;font-size:12px;text-align:center;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+.b-tbl tr:last-child td{border-bottom:none}
+.b-tbl tr:nth-child(even){background:var(--light-bg)}
+.b-cell{cursor:pointer;transition:all .15s;border-radius:6px;padding:9px 6px}
+.b-cell:hover{background:rgba(27,42,74,.04)}
+.b-cell.sel-s{background:#EEF2FF;outline:2px solid var(--navy);font-weight:700}
+.b-cell.sel-r{background:#FEF2F2;outline:2px solid var(--red);font-weight:700}
+.b-num{font-weight:700;color:var(--navy)}
+.b-win{color:var(--green)}.b-lose{color:var(--gray)}.b-lose-r{color:var(--red)}
+.b-choice{font-weight:800;font-size:13px}
+.b-switch{background:var(--light-bg);border-radius:10px;padding:14px 18px;margin-top:18px;text-align:center}
+.b-switch-val{font-size:20px;font-weight:800;color:var(--navy);margin-top:4px}
+
+/* Section C */
+.path-card{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:12px;cursor:pointer;text-align:left;border:2px solid var(--gray-light);background:var(--pure-white);transition:all .25s;margin-bottom:9px}
+.path-card:hover{border-color:#94A3B8}
+.path-card.sel{border-color:var(--cc);background:color-mix(in srgb,var(--cc) 5%,white)}
+.path-num{width:42px;height:42px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;background:var(--gray-lighter);color:var(--navy);transition:all .25s}
+.path-card.sel .path-num{background:var(--cc);color:var(--white)}
+.path-info{flex:1}.path-name{font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px}
+.path-stats{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--gray)}
+.path-stats strong{color:var(--text)}.path-stats .best{color:var(--green)}.path-stats .worst{color:var(--red)}
+.path-radio{width:22px;height:22px;border-radius:50%;flex-shrink:0;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.path-card.sel .path-radio{border-color:var(--cc);background:var(--cc)}
+.path-dot{width:7px;height:7px;border-radius:50%;background:var(--white);opacity:0;transition:opacity .2s}
+.path-card.sel .path-dot{opacity:1}
+
+/* Slider */
+.slider-box{background:var(--light-bg);border-radius:14px;padding:24px 24px 20px;text-align:center}
+.slider-val{font-size:36px;font-weight:800;color:var(--navy);margin-bottom:4px;letter-spacing:-1px}
+.slider-pct{font-size:13px;color:var(--gray);margin-bottom:16px}
+.slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--gray);margin-top:6px}
+
+/* Nav */
+.nav{display:flex;justify-content:space-between;margin-top:36px;padding-top:20px;border-top:1px solid var(--gray-light)}
+.btn-prev{font-size:13px;font-weight:600;color:var(--navy);background:transparent;border:none;cursor:pointer;padding:10px 0;transition:opacity .2s}
+.btn-prev:disabled{color:#CBD5E1;cursor:default}
+.btn-next{font-size:13px;font-weight:600;color:var(--white);letter-spacing:1px;background:var(--navy);border:none;border-radius:8px;padding:11px 28px;cursor:pointer;transition:all .2s}
+.btn-next:disabled{background:#CBD5E1;cursor:default}
+.btn-next:not(:disabled):hover{background:var(--navy-light)}
+
+/* Intro */
+.intro-card{display:flex;gap:12px;align-items:center;padding:12px 14px;background:var(--light-bg);border-radius:10px;margin-bottom:8px;transition:transform .2s}
+.intro-card:hover{transform:translateX(4px)}
+.intro-key{width:34px;height:34px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:800;font-size:13px;flex-shrink:0}
+.intro-title{font-weight:600;font-size:13.5px;color:var(--navy)}.intro-desc{font-size:12px;color:var(--gray)}
+
+/* Results */
+.results-header{background:var(--navy);padding:36px 20px;text-align:center;color:var(--white)}
+.results-header .sub{font-size:10px;letter-spacing:4px;opacity:.6;margin-bottom:8px;text-transform:uppercase}
+.results-header h1{font-family:var(--serif);font-size:28px;font-weight:400}
+.results-body{max-width:660px;margin:0 auto;padding:28px 20px 120px}
+.score-circle{width:120px;height:120px;border-radius:50%;margin:0 auto 16px;border:4px solid var(--cc,var(--navy));display:flex;flex-direction:column;align-items:center;justify-content:center;animation:pulse .8s ease}
+.score-big{font-size:36px;font-weight:800;color:var(--navy)}.score-of{font-size:11px;color:var(--gray)}
+.profile-badge{display:inline-block;padding:6px 22px;border-radius:20px;font-size:13px;font-weight:700;letter-spacing:1px}
+.rec-p{font-size:13px;color:var(--gray);margin-top:12px}.rec-n{font-size:14px;font-weight:600;color:var(--navy);margin-top:4px}
+.bd-title{font-size:11px;letter-spacing:3px;color:var(--navy);text-transform:uppercase;margin-bottom:18px;font-weight:700}
+.bar-row{margin-bottom:16px}
+.bar-hdr{display:flex;justify-content:space-between;margin-bottom:5px}
+.bar-lbl{font-size:12.5px;font-weight:600;color:var(--text)}.bar-val{font-size:12.5px;color:var(--gray)}.bar-w{font-size:10.5px}
+.bar-track{height:7px;background:var(--gray-lighter);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--navy),var(--navy-light));transition:width 1s ease}
+.dual-box{background:var(--light-bg);border-radius:12px;padding:22px;margin-top:28px}
+.dual-grid{display:flex;gap:18px;flex-wrap:wrap}
+.dual-col{flex:1;min-width:180px;text-align:center;padding:14px 0}
+.dual-lbl{font-size:10px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.dual-num{font-size:26px;font-weight:800;color:var(--navy)}
+.dual-badge{display:inline-block;padding:3px 12px;border-radius:12px;font-size:10.5px;font-weight:600;margin-top:6px}
+.dual-sub{font-size:9.5px;color:var(--gray);margin-top:4px}
+.dual-sep{width:1px;background:#D1D5DB;align-self:stretch}
+.dual-note{font-size:11.5px;color:var(--gray);text-align:center;margin-top:14px;line-height:1.5;font-style:italic}
+.formula-box{background:#FAFBFC;border:1px solid var(--gray-light);border-radius:10px;padding:14px 16px;margin-top:22px;text-align:center;font-size:11px;color:var(--gray);font-family:monospace;line-height:1.8}
+.formula-r{color:var(--navy);font-size:13px;font-weight:700}
+
+/* CTA buttons */
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.btn-cta{font-family:var(--sans);font-size:12px;font-weight:600;border-radius:8px;padding:13px 28px;cursor:pointer;letter-spacing:.5px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--navy);color:var(--white);border:none}
+.btn-primary:hover{background:var(--navy-light);transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.btn-secondary:hover{background:var(--navy);color:var(--white)}
+.btn-outline{background:transparent;color:var(--gray);border:1.5px solid var(--gray-light);font-size:11px;padding:10px 20px}
+.btn-outline:hover{border-color:var(--navy);color:var(--navy)}
+.disclaimer{font-size:9px;color:#94A3B8;line-height:1.5;margin-top:36px;text-align:center;border-top:1px solid var(--gray-light);padding-top:18px}
+
+/* Thank you name */
+.greeting{font-family:var(--serif);font-size:18px;color:var(--gray);font-style:italic;margin-bottom:8px}
+
+@media(max-width:600px){
+  .opts{padding-left:0}
+  .path-stats{gap:8px;font-size:11px}
+  .dual-grid{flex-direction:column}
+  .dual-sep{width:100%;height:1px}
+  .formula-box{font-size:9px}
+  .cta-row{flex-direction:column;align-items:center}
+  .lang-toggle,.lang-toggle-dark{top:10px;right:10px}
+  .lang-btn{padding:6px 12px;font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<!-- Language Toggle (visible on all screens) -->
+<div class="lang-toggle" id="lang-toggle">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+</div>
+
+<!-- Back to Home Button -->
+<a href="/" class="back-btn" style="position:fixed;top:16px;left:16px;z-index:200;background:rgba(255,255,255,.95);padding:8px 16px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.1);backdrop-filter:blur(8px);color:var(--navy);font-weight:600">
+  <span>←</span>
+  <span id="back-text">Back to Atlas</span>
+</a>
+
+<!-- ==================== WELCOME ==================== -->
+<div id="welcome" class="screen active">
+  <div class="welcome">
+    <div class="welcome-logo">A T L A S</div>
+    <div class="welcome-line"></div>
+    <div class="welcome-sub">PRIVATE WEALTH &amp; LEGACY OFFICE</div>
+    <div class="welcome-tagline">Building Legacies. Preserving Wealth.</div>
+    <div class="welcome-title" id="w-title"></div>
+    <div class="welcome-title2" id="w-title2"></div>
+    <div class="welcome-form">
+      <div class="form-group">
+        <label class="form-label" id="lbl-name"></label>
+        <input type="text" class="form-input" id="inp-name" placeholder="">
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="lbl-email"></label>
+        <input type="email" class="form-input" id="inp-email" placeholder="">
+      </div>
+      <div class="welcome-kpis">
+        <div><div class="kpi-num">5</div><div class="kpi-label" id="kpi-sections"></div></div>
+        <div><div class="kpi-num">~15</div><div class="kpi-label" id="kpi-minutes"></div></div>
+        <div><div class="kpi-num">13</div><div class="kpi-label" id="kpi-portfolios"></div></div>
+      </div>
+      <button class="btn-start" id="btn-go" onclick="startAssessment()" disabled></button>
+    </div>
+  </div>
+  <div class="footer"><span>www.atlaswealthlegacy.com</span></div>
+</div>
+
+<!-- ==================== ASSESSMENT ==================== -->
+<div id="app" class="screen">
+  <div class="topbar">
+    <a href="/" class="back-btn">
+      <span>←</span>
+      <span id="back-text-app">Back</span>
+    </a>
+    <span class="topbar-logo">ATLAS</span>
+    <span class="topbar-info" id="ti"></span>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="pb"></div></div>
+  <div class="content" id="ca"></div>
+  <div class="footer"><span>www.atlaswealthlegacy.com</span></div>
+</div>
+
+<!-- ==================== RESULTS ==================== -->
+<div id="res" class="screen">
+  <div class="results-header">
+    <div class="sub">Atlas Private Wealth &amp; Legacy Office</div>
+    <h1 id="res-title"></h1>
+  </div>
+  <div class="results-body" id="rb"></div>
+  <div class="footer"><span>www.atlaswealthlegacy.com</span></div>
+</div>
+<script>
+// ═══════════════════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════════════════
+const TX = {
+  en: {
+    wTitle: "Investment Profile",
+    wTitle2: "& Risk Assessment",
+    lblName: "Your Full Name",
+    lblEmail: "Email Address",
+    phName: "John & Jane Smith",
+    phEmail: "john@example.com",
+    kpiSections: "Sections",
+    kpiMinutes: "Minutes",
+    kpiPortfolios: "Portfolios",
+    btnStart: "Begin Assessment",
+    introGreet: "Welcome, {name}.",
+    introGreetSub: "This assessment was designed to understand your unique relationship with risk — so we can build a portfolio that truly fits you.",
+    introTag: "RISK ASSESSMENT",
+    introTitle: "Investor Profile Assessment",
+    introDesc: "Five short sections, each exploring a different angle. There are no right or wrong answers — only honest ones.",
+    introSections: [
+      ["A","Practical Scenarios","Real-world financial situations."],
+      ["B","Risk-Reward Trade-offs","Paired choices — gains vs. losses."],
+      ["C","Visual Path Selection","Real portfolio growth charts."],
+      ["D","Your Personal Threshold","Reflection on your maximum tolerable loss."],
+      ["E","Financial Profile","Objective financial circumstances."]
+    ],
+    prev: "← Back",
+    next: "Next →",
+    seeResults: "See Results",
+    backToAtlas: "Back to Atlas",
+    back: "Back",
+    sectionOf: "Section {s} of E",
+    introLabel: "Introduction",
+    resTitle: "Assessment Results",
+    greeting: "Thank you, {name}",
+    breakdown: "Section Breakdown",
+    dualTitle: "Dual-Axis Validation",
+    tolerance: "Risk Tolerance",
+    capacity: "Risk Capacity",
+    tolSub: "Sections A+B+C+D",
+    capSub: "Section E",
+    dualNote: "Recommended profile based on the <strong>lower</strong> of both axes: {p}",
+    recPort: "Recommended portfolios:",
+    btnSchedule: "Schedule a Consultation",
+    btnDownload: "Download PDF Report",
+    btnRestart: "Retake Assessment",
+    disclaimer: "This document is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Past performance is not indicative of future results. All investments involve risk, including the possible loss of principal. Atlas Private Wealth & Legacy Office is a registered investment advisor.",
+    switchPoint: "Your switch point:",
+    switchNever: "Never",
+    sliderEquiv: 'equivalent to <strong>{p}%</strong> of $1,000,000',
+    secA: { tag:"SECTION A", title:"Practical Scenarios",
+      howTo:"Each question describes a realistic financial situation. Read the scenario and imagine yourself in that exact position — with your real money, responsibilities, and emotions. Select the option that best reflects what you would genuinely do.",
+      questions:[
+        {q:"You receive an unexpected inheritance of $500,000. An advisor presents five allocation strategies. Which feels right?",
+         opts:[{l:"a",t:"100% in government bonds and insured deposits. Protect every dollar.",p:1},{l:"b",t:"70% bonds, 30% in a broad stock index. A cautious start.",p:2},{l:"c",t:"50/50 split between bonds and diversified equities. Balance.",p:3},{l:"d",t:"75% equities with international diversification, 25% bonds as cushion.",p:4},{l:"e",t:"90% concentrated in high-conviction growth stocks.",p:5}]},
+        {q:"Six months after investing, global markets drop 22%. Your portfolio follows. Your most honest reaction:",
+         opts:[{l:"a",t:"Sell everything. You cannot bear watching your savings decline further.",p:1},{l:"b",t:"Reduce equity exposure by half to limit damage and wait for clarity.",p:2},{l:"c",t:"Stay the course. Corrections are normal. You'll review in six months.",p:3},{l:"d",t:"Rebalance to original targets, buying more of what dropped most.",p:4},{l:"e",t:"Deploy additional cash into the market — this is a buying opportunity.",p:5}]},
+        {q:"Your neighbor tells you about a tech stock that tripled last year. Several friends have invested. What do you do?",
+         opts:[{l:"a",t:"Ignore it completely. You don't invest in individual stocks.",p:1},{l:"b",t:"Research it briefly but decide it's too speculative for your taste.",p:2},{l:"c",t:"Invest a small amount (2–3% of your portfolio) to test the waters.",p:3},{l:"d",t:"Allocate a meaningful position (5–10%) after thorough due diligence.",p:4},{l:"e",t:"Make it a core holding (15%+). High-conviction bets create fortunes.",p:5}]},
+        {q:"How would you describe your primary investment objective over the next 10–15 years?",
+         opts:[{l:"a",t:"Protect what I have. I cannot afford to lose my savings.",p:1},{l:"b",t:"Grow modestly while keeping risk at a minimum.",p:2},{l:"c",t:"Achieve balanced growth. I accept moderate fluctuations.",p:3},{l:"d",t:"Maximize long-term growth. I can tolerate significant drawdowns.",p:4},{l:"e",t:"Aggressive wealth accumulation. I want the highest compounding rate.",p:5}]},
+        {q:"A fundamentally strong sector has dropped 40% in three months due to temporary panic. You have cash available. What percentage do you deploy?",
+         opts:[{l:"a",t:"0%. I don't try to time the market during a crisis.",p:1},{l:"b",t:"10–20%. A small, cautious position.",p:2},{l:"c",t:"30–40%. A meaningful but measured allocation.",p:3},{l:"d",t:"50–70%. When rare opportunities arise, conviction matters.",p:4},{l:"e",t:"80–100%. Fortunes are made in moments of fear.",p:5}]}
+      ]},
+    secB: { tag:"SECTION B", title:"Risk-Reward Trade-offs",
+      howTo:"Below you will see 10 pairs of gambles. For each pair, choose one:<br><br><strong>Option S (Safe)</strong> — You either win $1,000 or win $800. Both outcomes are positive. No risk of loss.<br><br><strong>Option R (Risky)</strong> — You could win a much larger amount, but you could also <em>lose</em> money. A true gamble.<br><br>As you move down the table, Option R becomes more rewarding — but the potential loss also grows. <strong>Click S or R for each row.</strong> There is no right or wrong answer. We are simply looking for the point where the reward becomes large enough for you to accept the risk.",
+      thPair:"Pair",thS:"Option S (Safer)",thR:"Option R (Riskier)",thChoice:"Pick"},
+    secC: { tag:"SECTION C", title:"Visual Path Selection",
+      howTo:"Five investment journeys with different risk levels. Study the drops — how deep they are and how they would feel with your real money. Select the path whose volatility you could genuinely endure.",
+      pathLabel:"Path",
+      paths:[
+        {id:1,name:"Steady & Protected",final:"$27,157",worst:"–13.8%",best:"+22.2%",avg:"+10.5%",color:"#3B82F6"},
+        {id:2,name:"Measured Growth",final:"$37,482",worst:"–15.3%",best:"+25.8%",avg:"+14.1%",color:"#10B981"},
+        {id:3,name:"Balanced Ambition",final:"$53,129",worst:"–22.7%",best:"+34.7%",avg:"+18.1%",color:"#F59E0B"},
+        {id:4,name:"Growth Engine",final:"$63,844",worst:"–18.9%",best:"+41.2%",avg:"+20.3%",color:"#EF4444"},
+        {id:5,name:"Maximum Velocity",final:"$72,568",worst:"–27.3%",best:"+55.4%",avg:"+21.8%",color:"#8B5CF6"}
+      ],
+      lblFinal:"Final:",lblBest:"Best:",lblWorst:"Worst:",lblAvg:"Avg:"},
+    secD: { tag:"SECTION D", title:"Your Personal Threshold",
+      howTo:"Forget theory, forget averages. Think about your real life: your family, your obligations, your peace of mind. Answer with what feels true to you right now.",
+      questions:[
+        {id:"D1",q:"Imagine your entire investable portfolio is worth $1,000,000. Over the next 12 months, what is the maximum dollar amount you could see disappear before it genuinely affects your quality of life?",type:"slider"},
+        {id:"D2",q:"If your portfolio dropped by that exact amount tomorrow, how would you feel?",
+         opts:[{l:"a",t:"Devastated. I would struggle to focus on anything else.",p:1},{l:"b",t:"Very concerned. I would want to make changes immediately.",p:2},{l:"c",t:"Uncomfortable, but I would remind myself it's temporary.",p:3},{l:"d",t:"Uneasy but manageable. I've been through worse.",p:4},{l:"e",t:"It's the cost of investing. I would barely change my routine.",p:5}]},
+        {id:"D3",q:"How long would you wait for recovery before feeling the urge to change your strategy?",
+         opts:[{l:"a",t:"I'd need recovery within 3 months or I'd make changes.",p:1},{l:"b",t:"I could wait up to 6 months, with growing anxiety.",p:2},{l:"c",t:"I could wait 1–2 years. Markets take time.",p:3},{l:"d",t:"I could wait 3–5 years. I invest for the long run.",p:4},{l:"e",t:"However long it takes. I trust the process.",p:5}]},
+        {id:"D4",q:"Have you ever sold an investment at a loss because the decline was causing you significant stress?",
+         opts:[{l:"a",t:"Yes, I sold after a decline of less than 10%.",p:1},{l:"b",t:"Yes, I sold after a decline of 10–20%.",p:2},{l:"c",t:"No, but I came very close during a significant downturn.",p:3},{l:"d",t:"No. I've held through drawdowns of 20%+ without selling.",p:4},{l:"e",t:"No. I've held through severe drawdowns (30%+) and even added.",p:5}]}
+      ]},
+    secE: { tag:"SECTION E", title:"Financial Profile",
+      howTo:"The previous sections explored how you feel about risk. This section looks at your objective financial circumstances. Both matter equally.",
+      questions:[
+        {q:"How many years before you need a significant portion of this money?",
+         opts:[{l:"a",t:"Less than 3 years.",p:1},{l:"b",t:"3 to 5 years.",p:2},{l:"c",t:"5 to 10 years.",p:3},{l:"d",t:"10 to 20 years.",p:4},{l:"e",t:"20+ years, or investing for the next generation.",p:5}]},
+        {q:"How stable is your primary income source over the next 5 years?",
+         opts:[{l:"a",t:"Very uncertain — variable income or irregular cash flow.",p:1},{l:"b",t:"Somewhat unstable — fluctuates significantly year to year.",p:2},{l:"c",t:"Moderately stable — reliable but could change.",p:3},{l:"d",t:"Stable — secure salary, pension, or long-term contracts.",p:4},{l:"e",t:"Very stable — multiple income sources separate from investments.",p:5}]},
+        {q:"What portion of your total liquid net worth would this investment represent?",
+         opts:[{l:"a",t:"More than 75%. Essentially all my investable assets.",p:1},{l:"b",t:"50–75%. A very significant portion.",p:2},{l:"c",t:"25–50%. Significant but not dominant.",p:3},{l:"d",t:"10–25%. I have substantial additional assets.",p:4},{l:"e",t:"Less than 10%. Very significant wealth outside this investment.",p:5}]},
+        {q:"Do you have an emergency fund (6–12 months of expenses) separate from this investment?",
+         opts:[{l:"a",t:"No separate emergency fund.",p:1},{l:"b",t:"Some reserves, but less than 3 months.",p:2},{l:"c",t:"Yes, approximately 3–6 months set aside.",p:3},{l:"d",t:"Yes, 6–12 months in liquid reserves.",p:4},{l:"e",t:"Yes, more than 12 months, plus insurance coverage.",p:5}]},
+        {q:"Do you have significant financial obligations or dependents relying on this capital in the next 5–10 years?",
+         opts:[{l:"a",t:"Yes, multiple major obligations within 3–5 years.",p:1},{l:"b",t:"Yes, at least one significant obligation within 5 years.",p:2},{l:"c",t:"Some moderate obligations, but manageable.",p:3},{l:"d",t:"Minor obligations only. Future expenses mostly covered.",p:4},{l:"e",t:"No significant obligations. Fully discretionary capital.",p:5}]}
+      ]},
+    tiers:[
+      {mn:1,mx:1.8,p:"Conservative",pt:"Atlas Anchor (1A) · Compass (1B)",c:"#3B82F6"},
+      {mn:1.9,mx:2.5,p:"Mod-Conservative",pt:"Atlas Horizon (2A) · Meridian (2B)",c:"#10B981"},
+      {mn:2.6,mx:3.3,p:"Moderate",pt:"Atlas Voyager (3A) · Navigator (3B)",c:"#F59E0B"},
+      {mn:3.4,mx:4.1,p:"Mod-Aggressive",pt:"Vanguard (4A) · Tradewind (4B) · Titan (4C) · Prima (4CP)",c:"#EF4444"},
+      {mn:4.2,mx:5,p:"Aggressive",pt:"Atlas Apex (5A) · Summit (5B) · Frontier (5C)",c:"#8B5CF6"}
+    ],
+    secLabels:["Practical Scenarios","Risk-Reward Trade-offs","Visual Path Selection","Your Personal Threshold","Financial Profile"]
+  },
+  es: {
+    wTitle: "Perfil de Inversión",
+    wTitle2: "& Evaluación de Riesgo",
+    lblName: "Su Nombre Completo",
+    lblEmail: "Correo Electrónico",
+    phName: "Juan y María García",
+    phEmail: "juan@ejemplo.com",
+    kpiSections: "Secciones",
+    kpiMinutes: "Minutos",
+    kpiPortfolios: "Portafolios",
+    btnStart: "Comenzar Evaluación",
+    introGreet: "Bienvenido/a, {name}.",
+    introGreetSub: "Esta evaluación fue diseñada para comprender su relación única con el riesgo — para construir un portafolio que verdaderamente se ajuste a usted.",
+    introTag: "EVALUACIÓN DE RIESGO",
+    introTitle: "Evaluación del Perfil del Inversor",
+    introDesc: "Cinco secciones cortas, cada una explorando un ángulo diferente. No hay respuestas correctas ni incorrectas — solo honestas.",
+    introSections: [
+      ["A","Escenarios Prácticos","Situaciones financieras reales."],
+      ["B","Compensaciones Riesgo-Beneficio","Opciones pareadas ganancia vs. pérdida."],
+      ["C","Selección Visual de Camino","Gráficas reales de crecimiento."],
+      ["D","Su Umbral Personal","Reflexión sobre su pérdida máxima tolerable."],
+      ["E","Perfil Financiero","Circunstancias financieras objetivas."]
+    ],
+    prev: "← Anterior",
+    next: "Siguiente →",
+    seeResults: "Ver Resultados",
+    backToAtlas: "Volver a Atlas",
+    back: "Volver",
+    sectionOf: "Sección {s} de E",
+    introLabel: "Introducción",
+    resTitle: "Resultados de la Evaluación",
+    greeting: "Gracias, {name}",
+    breakdown: "Desglose por Sección",
+    dualTitle: "Validación de Doble Eje",
+    tolerance: "Tolerancia al Riesgo",
+    capacity: "Capacidad de Riesgo",
+    tolSub: "Secciones A+B+C+D",
+    capSub: "Sección E",
+    dualNote: "Perfil recomendado basado en el <strong>menor</strong> de ambos ejes: {p}",
+    recPort: "Portafolios recomendados:",
+    btnSchedule: "Agendar una Consulta",
+    btnDownload: "Descargar Reporte PDF",
+    btnRestart: "Reiniciar Evaluación",
+    disclaimer: "Este documento es únicamente para fines informativos y no constituye una oferta de venta ni una solicitud de oferta de compra de valores. El rendimiento pasado no es indicativo de resultados futuros. Todas las inversiones implican riesgo, incluida la posible pérdida del capital. Atlas Private Wealth & Legacy Office es un asesor de inversiones registrado.",
+    switchPoint: "Su punto de cambio:",
+    switchNever: "Nunca",
+    sliderEquiv: 'equivalente a <strong>{p}%</strong> de $1,000,000',
+    secA: { tag:"SECCIÓN A", title:"Escenarios Prácticos",
+      howTo:"Cada pregunta describe una situación financiera realista. Lea el escenario e imagínese en esa posición exacta — con su dinero real, sus responsabilidades y emociones reales. Seleccione la opción que mejor refleje lo que genuinamente haría.",
+      questions:[
+        {q:"Recibe una herencia inesperada de $500,000. Un asesor le presenta cinco estrategias. ¿Cuál siente correcta?",
+         opts:[{l:"a",t:"100% en bonos gubernamentales y depósitos asegurados. Proteger cada dólar.",p:1},{l:"b",t:"70% bonos, 30% en un índice amplio de acciones. Una entrada cautelosa.",p:2},{l:"c",t:"División 50/50 entre bonos y acciones diversificadas. Equilibrio.",p:3},{l:"d",t:"75% acciones con diversificación internacional, 25% bonos como colchón.",p:4},{l:"e",t:"90% concentrado en acciones de crecimiento de alta convicción.",p:5}]},
+        {q:"Seis meses después de invertir, los mercados caen 22%. Su portafolio los sigue. Su reacción más honesta:",
+         opts:[{l:"a",t:"Vender todo. No puede soportar ver sus ahorros disminuir más.",p:1},{l:"b",t:"Reducir la exposición a acciones a la mitad para limitar daños.",p:2},{l:"c",t:"Mantener el rumbo. Las correcciones son normales. Revisará en seis meses.",p:3},{l:"d",t:"Rebalancear a los objetivos originales, comprando más de lo que más cayó.",p:4},{l:"e",t:"Desplegar efectivo adicional al mercado — esta es una oportunidad de compra.",p:5}]},
+        {q:"Su vecino le cuenta sobre una acción tecnológica que triplicó el año pasado. Varios amigos han invertido. ¿Qué hace?",
+         opts:[{l:"a",t:"Ignorarlo completamente. No invierte en acciones individuales.",p:1},{l:"b",t:"Investigar brevemente pero decidir que es demasiado especulativo.",p:2},{l:"c",t:"Invertir una pequeña cantidad (2–3% de su portafolio) para probar.",p:3},{l:"d",t:"Asignar una posición significativa (5–10%) después de due diligence exhaustivo.",p:4},{l:"e",t:"Hacerla una posición central (15%+). Las apuestas de alta convicción crean fortunas.",p:5}]},
+        {q:"¿Cómo describiría su objetivo principal de inversión para los próximos 10–15 años?",
+         opts:[{l:"a",t:"Proteger lo que tengo. No puedo permitirme perder mis ahorros.",p:1},{l:"b",t:"Crecer modestamente manteniendo el riesgo al mínimo.",p:2},{l:"c",t:"Lograr crecimiento equilibrado. Acepto fluctuaciones moderadas.",p:3},{l:"d",t:"Maximizar el crecimiento a largo plazo. Tolero caídas significativas.",p:4},{l:"e",t:"Acumulación agresiva de riqueza. Quiero la mayor tasa de capitalización.",p:5}]},
+        {q:"Un sector sólido ha caído 40% en tres meses por pánico temporal. Tiene efectivo disponible. ¿Qué porcentaje despliega?",
+         opts:[{l:"a",t:"0%. No intento predecir el mercado durante una crisis.",p:1},{l:"b",t:"10–20%. Una posición pequeña y cautelosa.",p:2},{l:"c",t:"30–40%. Una asignación significativa pero medida.",p:3},{l:"d",t:"50–70%. Cuando surgen oportunidades raras, la convicción importa.",p:4},{l:"e",t:"80–100%. Las fortunas se hacen en momentos de miedo.",p:5}]}
+      ]},
+    secB: { tag:"SECCIÓN B", title:"Compensaciones Riesgo-Beneficio",
+      howTo:"A continuación verá 10 pares de apuestas. Para cada par, elija una:<br><br><strong>Opción S (Segura)</strong> — Usted gana $1,000 o gana $800. Ambos resultados son positivos. No hay riesgo de pérdida.<br><br><strong>Opción R (Riesgosa)</strong> — Podría ganar una cantidad mucho mayor, pero también podría <em>perder</em> dinero. Una apuesta real.<br><br>A medida que avanza en la tabla, la Opción R se vuelve más atractiva — pero la pérdida potencial también crece. <strong>Haga clic en S o R para cada fila.</strong> No hay respuestas correctas ni incorrectas. Simplemente buscamos el punto en el que la recompensa se vuelve lo suficientemente grande para que usted acepte el riesgo.",
+      thPair:"Par",thS:"Opción S (Segura)",thR:"Opción R (Riesgosa)",thChoice:"Elige"},
+    secC: { tag:"SECCIÓN C", title:"Selección Visual de Camino",
+      howTo:"Cinco caminos de inversión con diferente nivel de riesgo. Estudie las caídas — qué tan profundas son y cómo se sentirían con su dinero real. Seleccione el camino cuya volatilidad podría genuinamente soportar.",
+      pathLabel:"Camino",
+      paths:[
+        {id:1,name:"Estable y Protegido",final:"$27,157",worst:"–13.8%",best:"+22.2%",avg:"+10.5%",color:"#3B82F6"},
+        {id:2,name:"Crecimiento Medido",final:"$37,482",worst:"–15.3%",best:"+25.8%",avg:"+14.1%",color:"#10B981"},
+        {id:3,name:"Ambición Equilibrada",final:"$53,129",worst:"–22.7%",best:"+34.7%",avg:"+18.1%",color:"#F59E0B"},
+        {id:4,name:"Motor de Crecimiento",final:"$63,844",worst:"–18.9%",best:"+41.2%",avg:"+20.3%",color:"#EF4444"},
+        {id:5,name:"Velocidad Máxima",final:"$72,568",worst:"–27.3%",best:"+55.4%",avg:"+21.8%",color:"#8B5CF6"}
+      ],
+      lblFinal:"Final:",lblBest:"Mejor:",lblWorst:"Peor:",lblAvg:"Prom:"},
+    secD: { tag:"SECCIÓN D", title:"Su Umbral Personal",
+      howTo:"Olvide la teoría, olvide los promedios. Piense en su vida real: su familia, sus obligaciones, su tranquilidad. Responda con lo que sienta verdadero para usted ahora mismo.",
+      questions:[
+        {id:"D1",q:"Imagine que su portafolio vale $1,000,000. En los próximos 12 meses, ¿cuál es la cantidad máxima que podría ver desaparecer antes de que afecte su calidad de vida?",type:"slider"},
+        {id:"D2",q:"Si su portafolio cayera exactamente esa cantidad mañana, ¿cómo se sentiría?",
+         opts:[{l:"a",t:"Devastado/a. Me costaría concentrarme en cualquier otra cosa.",p:1},{l:"b",t:"Muy preocupado/a. Querría hacer cambios inmediatamente.",p:2},{l:"c",t:"Incómodo/a, pero me recordaría que es temporal.",p:3},{l:"d",t:"Inquieto/a pero manejable. He pasado por cosas peores.",p:4},{l:"e",t:"Es el costo de invertir. Apenas cambiaría mi rutina.",p:5}]},
+        {id:"D3",q:"¿Cuánto tiempo esperaría la recuperación antes de sentir urgencia de cambiar su estrategia?",
+         opts:[{l:"a",t:"Necesitaría ver recuperación en 3 meses o haría cambios.",p:1},{l:"b",t:"Podría esperar hasta 6 meses, pero con ansiedad creciente.",p:2},{l:"c",t:"Podría esperar 1–2 años. Los mercados toman tiempo.",p:3},{l:"d",t:"Podría esperar 3–5 años. Invierto a largo plazo.",p:4},{l:"e",t:"Lo que sea necesario. Confío en el proceso y el portafolio.",p:5}]},
+        {id:"D4",q:"¿Alguna vez vendió una inversión con pérdida por estrés o ansiedad?",
+         opts:[{l:"a",t:"Sí, vendí después de una caída menor al 10%.",p:1},{l:"b",t:"Sí, vendí después de una caída de 10–20%.",p:2},{l:"c",t:"No, pero estuve muy cerca durante una caída significativa.",p:3},{l:"d",t:"No. He mantenido posiciones con caídas de 20%+ sin vender.",p:4},{l:"e",t:"No. He mantenido con caídas severas (30%+) e incluso aumenté posiciones.",p:5}]}
+      ]},
+    secE: { tag:"SECCIÓN E", title:"Perfil Financiero",
+      howTo:"Las secciones anteriores exploraron cómo siente el riesgo. Esta observa sus circunstancias financieras objetivas. Ambas importan igual.",
+      questions:[
+        {q:"¿Cuántos años antes de que necesite una porción significativa de este dinero?",
+         opts:[{l:"a",t:"Menos de 3 años.",p:1},{l:"b",t:"3 a 5 años.",p:2},{l:"c",t:"5 a 10 años.",p:3},{l:"d",t:"10 a 20 años.",p:4},{l:"e",t:"20+ años, o invirtiendo para la próxima generación.",p:5}]},
+        {q:"¿Qué tan estable es su fuente principal de ingresos en los próximos 5 años?",
+         opts:[{l:"a",t:"Muy incierta — ingresos variables o flujo de caja irregular.",p:1},{l:"b",t:"Algo inestable — fluctúa significativamente año con año.",p:2},{l:"c",t:"Moderadamente estable — confiable pero podría cambiar.",p:3},{l:"d",t:"Estable — salario seguro, pensión o contratos a largo plazo.",p:4},{l:"e",t:"Muy estable — múltiples fuentes de ingreso separadas de inversiones.",p:5}]},
+        {q:"¿Qué porción de su patrimonio líquido total representaría esta inversión?",
+         opts:[{l:"a",t:"Más del 75%. Esencialmente todos mis activos invertibles.",p:1},{l:"b",t:"50–75%. Una porción muy significativa.",p:2},{l:"c",t:"25–50%. Significativa pero no dominante.",p:3},{l:"d",t:"10–25%. Tengo activos sustanciales adicionales.",p:4},{l:"e",t:"Menos del 10%. Patrimonio muy significativo fuera de esta inversión.",p:5}]},
+        {q:"¿Tiene fondo de emergencia (6–12 meses de gastos) separado de esta inversión?",
+         opts:[{l:"a",t:"No tengo fondo de emergencia separado.",p:1},{l:"b",t:"Tengo reservas, pero menos de 3 meses.",p:2},{l:"c",t:"Sí, aproximadamente 3–6 meses reservados.",p:3},{l:"d",t:"Sí, 6–12 meses en reservas líquidas.",p:4},{l:"e",t:"Sí, más de 12 meses reservados, más cobertura de seguros.",p:5}]},
+        {q:"¿Tiene obligaciones financieras significativas o dependientes que dependan de este capital en los próximos 5–10 años?",
+         opts:[{l:"a",t:"Sí, múltiples obligaciones mayores en 3–5 años.",p:1},{l:"b",t:"Sí, al menos una obligación significativa dentro de 5 años.",p:2},{l:"c",t:"Algunas obligaciones moderadas, pero manejables.",p:3},{l:"d",t:"Solo obligaciones menores. Gastos futuros ya cubiertos.",p:4},{l:"e",t:"Sin obligaciones significativas. Capital completamente discrecional.",p:5}]}
+      ]},
+    tiers:[
+      {mn:1,mx:1.8,p:"Conservador",pt:"Atlas Anchor (1A) · Compass (1B)",c:"#3B82F6"},
+      {mn:1.9,mx:2.5,p:"Mod-Conservador",pt:"Atlas Horizon (2A) · Meridian (2B)",c:"#10B981"},
+      {mn:2.6,mx:3.3,p:"Moderado",pt:"Atlas Voyager (3A) · Navigator (3B)",c:"#F59E0B"},
+      {mn:3.4,mx:4.1,p:"Mod-Agresivo",pt:"Vanguard (4A) · Tradewind (4B) · Titan (4C) · Prima (4CP)",c:"#EF4444"},
+      {mn:4.2,mx:5,p:"Agresivo",pt:"Atlas Apex (5A) · Summit (5B) · Frontier (5C)",c:"#8B5CF6"}
+    ],
+    secLabels:["Escenarios Prácticos","Compensaciones Riesgo-Beneficio","Selección Visual de Camino","Su Umbral Personal","Perfil Financiero"]
+  }
+};
+
+// B pairs (shared — numbers are the same in both languages)
+const BPAIRS=[{id:1,sw:"$1,000",sl:"$800",rw:"$1,800",rl:"–$200"},{id:2,sw:"$1,000",sl:"$800",rw:"$2,500",rl:"–$400"},{id:3,sw:"$1,000",sl:"$800",rw:"$3,500",rl:"–$600"},{id:4,sw:"$1,000",sl:"$800",rw:"$4,500",rl:"–$800"},{id:5,sw:"$1,000",sl:"$800",rw:"$6,000",rl:"–$1,000"},{id:6,sw:"$1,000",sl:"$800",rw:"$7,500",rl:"–$1,500"},{id:7,sw:"$1,000",sl:"$800",rw:"$9,000",rl:"–$2,000"},{id:8,sw:"$1,000",sl:"$800",rw:"$11,000",rl:"–$2,500"},{id:9,sw:"$1,000",sl:"$800",rw:"$13,500",rl:"–$3,000"},{id:10,sw:"$1,000",sl:"$800",rw:"$16,000",rl:"–$3,500"}];
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+let lang='en', clientName='', clientEmail='';
+const SEC=["intro","A","B","C","D","E"];
+let ci=0, ans={D1:100000};
+function t(){return TX[lang]}
+function gT(s){for(const x of t().tiers)if(s>=x.mn&&s<=x.mx)return x;return t().tiers[0]}
+
+// ═══════════════════════════════════════════════════
+// LANGUAGE
+// ═══════════════════════════════════════════════════
+function setLang(l){
+  lang=l;
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-es').classList.toggle('active',l==='es');
+  document.documentElement.lang=l;
+  updateWelcome();
+  // Update back buttons
+  const backText=document.getElementById('back-text');
+  const backTextApp=document.getElementById('back-text-app');
+  if(backText) backText.textContent=t().backToAtlas;
+  if(backTextApp) backTextApp.textContent=t().back;
+  // If in assessment, re-render
+  if(document.getElementById('app').classList.contains('active')) render();
+}
+
+function updateWelcome(){
+  const x=t();
+  document.getElementById('w-title').textContent=x.wTitle;
+  document.getElementById('w-title2').textContent=x.wTitle2;
+  document.getElementById('lbl-name').textContent=x.lblName;
+  document.getElementById('lbl-email').textContent=x.lblEmail;
+  document.getElementById('inp-name').placeholder=x.phName;
+  document.getElementById('inp-email').placeholder=x.phEmail;
+  document.getElementById('kpi-sections').textContent=x.kpiSections;
+  document.getElementById('kpi-minutes').textContent=x.kpiMinutes;
+  document.getElementById('kpi-portfolios').textContent=x.kpiPortfolios;
+  document.getElementById('btn-go').textContent=x.btnStart;
+}
+
+// ═══════════════════════════════════════════════════
+// SCREENS
+// ═══════════════════════════════════════════════════
+function sh(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+
+function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+
+function validateWelcome(){
+  const n=document.getElementById('inp-name').value.trim();
+  const e=document.getElementById('inp-email').value.trim();
+  const emailEl=document.getElementById('inp-email');
+  if(e && !isValidEmail(e)){emailEl.style.borderColor='var(--red)'}else{emailEl.style.borderColor=''}
+  document.getElementById('btn-go').disabled=!(n && isValidEmail(e));
+}
+
+function startAssessment(){
+  clientName=document.getElementById('inp-name').value.trim();
+  clientEmail=document.getElementById('inp-email').value.trim();
+  if(!clientName || !isValidEmail(clientEmail))return;
+  sh('app');ci=0;render();
+}
+
+// ═══════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════
+function upd(){document.getElementById('pb').style.width=(ci/SEC.length*100)+'%';const s=SEC[ci];document.getElementById('ti').textContent=s==='intro'?t().introLabel:t().sectionOf.replace('{s}',s)}
+function cp(){const s=SEC[ci];if(s==='intro')return true;if(s==='A')return[0,1,2,3,4].every(i=>ans['A'+i]!==undefined);if(s==='B')return Array.from({length:10},(_,i)=>i+1).every(i=>ans['B'+i]!==undefined);if(s==='C')return ans.C!==undefined;if(s==='D')return ans.D1!==undefined&&ans.D2!==undefined&&ans.D3!==undefined&&ans.D4!==undefined;if(s==='E')return[0,1,2,3,4].every(i=>ans['E'+i]!==undefined);return false}
+function nx(){if(ci===SEC.length-1)showRes();else{ci++;render();window.scrollTo({top:0,behavior:'smooth'})}}
+function pv(){if(ci>0){ci--;render();window.scrollTo({top:0,behavior:'smooth'})}}
+function un(){const p=document.getElementById('bp'),n=document.getElementById('bn');if(p)p.disabled=ci===0;if(n){n.disabled=!cp();n.textContent=ci===SEC.length-1?t().seeResults:t().next}}
+
+// ═══════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════
+function render(){upd();const a=document.getElementById('ca');const s=SEC[ci];let h='';
+if(s==='intro')h=rI();else if(s==='A'||s==='E')h=rQ(s);else if(s==='B')h=rB();else if(s==='C')h=rC();else if(s==='D')h=rD();
+h+=`<div class="nav"><button class="btn-prev" id="bp" onclick="pv()" ${ci===0?'disabled':''}>${t().prev}</button><button class="btn-next" id="bn" onclick="nx()" ${!cp()?'disabled':''}>${ci===SEC.length-1?t().seeResults:t().next}</button></div>`;
+a.innerHTML=h;un();
+if(s==='D'){const sl=document.getElementById('d1s');if(sl)sl.addEventListener('input',function(){ans.D1=+this.value;document.getElementById('d1v').textContent='$'+ans.D1.toLocaleString();document.getElementById('d1p').innerHTML=t().sliderEquiv.replace('{p}',Math.round(ans.D1/10000));un()})}}
+
+function rI(){const x=t();const firstName=clientName.split(' ')[0]||clientName;return`<div style="text-align:center;margin-bottom:32px;padding-top:8px"><div style="font-family:var(--serif);font-size:clamp(24px,5vw,32px);font-weight:600;color:var(--navy);margin-bottom:10px">${x.introGreet.replace('{name}',firstName)}</div><p style="font-size:14px;color:var(--text-light);line-height:1.7;max-width:520px;margin:0 auto">${x.introGreetSub}</p></div><div class="section-tag">${x.introTag}</div><div class="section-line"></div><div class="section-title">${x.introTitle}</div><p style="font-size:14px;color:var(--text-light);line-height:1.7;margin-bottom:22px">${x.introDesc}</p>${x.introSections.map(([k,ti,d])=>`<div class="intro-card"><div class="intro-key">${k}</div><div><div class="intro-title">${ti}</div><div class="intro-desc">${d}</div></div></div>`).join('')}`}
+
+function rQ(s){const d=s==='A'?t().secA:t().secE;let h=`<div class="section-tag">${d.tag}</div><div class="section-line"></div><div class="section-title">${d.title}</div><div class="how-to"><p>${d.howTo}</p></div>`;d.questions.forEach((q,i)=>{h+=`<div class="q-block" style="animation-delay:${i*0.08}s"><div class="q-header"><span class="q-num">${i+1}</span><p class="q-text">${q.q}</p></div><div class="opts">${q.opts.map(o=>`<div class="opt ${ans[s+i]===o.p?'sel':''}" onclick="sO('${s+i}',${o.p},this)"><span class="opt-l">${o.l.toUpperCase()}</span><span class="opt-t">${o.t}</span></div>`).join('')}</div></div>`});return h}
+
+function rB(){const x=t().secB;let sp='—';for(let i=1;i<=10;i++)if(ans['B'+i]==='R'){sp=(lang==='en'?'Pair ':'Par ')+i;break}let aS=true;for(let i=1;i<=10;i++)if(ans['B'+i]!=='S'){aS=false;break}if(aS)sp=t().switchNever;
+let h=`<div class="section-tag">${x.tag}</div><div class="section-line"></div><div class="section-title">${x.title}</div><div class="how-to"><p>${x.howTo}</p></div><div class="b-wrap"><table class="b-tbl"><thead><tr><th>${x.thPair}</th><th>${x.thS}</th><th>${x.thR}</th><th>${x.thChoice}</th></tr></thead><tbody>`;
+BPAIRS.forEach(p=>{const ch=ans['B'+p.id]||'';h+=`<tr><td class="b-num">${p.id}</td><td class="b-cell ${ch==='S'?'sel-s':''}" onclick="sB(${p.id},'S')"><span class="b-win">50%: ${p.sw}</span> · <span class="b-lose">50%: ${p.sl}</span></td><td class="b-cell ${ch==='R'?'sel-r':''}" onclick="sB(${p.id},'R')"><span class="b-win">50%: ${p.rw}</span> · <span class="b-lose-r">50%: ${p.rl}</span></td><td class="b-choice" style="color:${ch==='S'?'var(--navy)':ch==='R'?'var(--red)':'#CBD5E1'}">${ch||'—'}</td></tr>`});
+h+=`</tbody></table></div><div class="b-switch"><div style="font-size:13px;color:var(--text-light)">${t().switchPoint}</div><div class="b-switch-val">${sp}</div></div>`;return h}
+
+function rC(){const x=t().secC;let h=`<div class="section-tag">${x.tag}</div><div class="section-line"></div><div class="section-title">${x.title}</div><div class="how-to"><p>${x.howTo}</p></div>`;
+x.paths.forEach(p=>{h+=`<div class="path-card ${ans.C===p.id?'sel':''}" style="--cc:${p.color}" onclick="sC(${p.id})"><div class="path-num">${p.id}</div><div class="path-info"><div class="path-name">${x.pathLabel} ${p.id} — ${p.name}</div><div class="path-stats"><span>${x.lblFinal} <strong>${p.final}</strong></span><span>${x.lblBest} <strong class="best">${p.best}</strong></span><span>${x.lblWorst} <strong class="worst">${p.worst}</strong></span><span>${x.lblAvg} <strong>${p.avg}</strong></span></div></div><div class="path-radio"><div class="path-dot"></div></div></div>`});return h}
+
+function rD(){const x=t().secD;const v=ans.D1||100000;const pc=Math.round(v/10000);
+let h=`<div class="section-tag">${x.tag}</div><div class="section-line"></div><div class="section-title">${x.title}</div><div class="how-to"><p>${x.howTo}</p></div><div class="q-block"><div class="q-header"><span class="q-num">1</span><p class="q-text">${x.questions[0].q}</p></div><div class="opts" style="padding-left:48px"><div class="slider-box"><div class="slider-val" id="d1v">$${v.toLocaleString()}</div><div class="slider-pct" id="d1p">${t().sliderEquiv.replace('{p}',pc)}</div><input type="range" id="d1s" min="0" max="500000" step="10000" value="${v}"><div class="slider-labels"><span>$0</span><span>$500,000</span></div></div></div></div>`;
+x.questions.slice(1).forEach((q,qi)=>{h+=`<div class="q-block"><div class="q-header"><span class="q-num">${qi+2}</span><p class="q-text">${q.q}</p></div><div class="opts">${q.opts.map(o=>`<div class="opt ${ans[q.id]===o.p?'sel':''}" onclick="sO('${q.id}',${o.p},this)"><span class="opt-l">${o.l.toUpperCase()}</span><span class="opt-t">${o.t}</span></div>`).join('')}</div></div>`});return h}
+
+// Selection handlers
+function sO(k,p,el){ans[k]=p;el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');un()}
+function sB(id,ch){ans['B'+id]=ch;render()}
+function sC(id){ans.C=id;render()}
+
+// ═══════════════════════════════════════════════════
+// SCORING
+// ═══════════════════════════════════════════════════
+function compute(){
+  const nA=[0,1,2,3,4].reduce((s,i)=>s+(ans['A'+i]||0),0)/5;
+  let sp=11;for(let i=1;i<=10;i++)if(ans['B'+i]==='R'){sp=i;break}
+  let nB;if(sp>10)nB=1;else if(sp>=8)nB=2;else if(sp>=5)nB=3;else if(sp>=3)nB=4;else nB=5;
+  const nC=ans.C||3;
+  const d1p=(ans.D1||0)/10000;let d1;if(d1p<=5)d1=1;else if(d1p<=10)d1=2;else if(d1p<=20)d1=3;else if(d1p<=30)d1=4;else d1=5;
+  const nD=(d1+(ans.D2||0)+(ans.D3||0)+(ans.D4||0))/4;
+  const nE=[0,1,2,3,4].reduce((s,i)=>s+(ans['E'+i]||0),0)/5;
+  const f=nA*.3+nB*.15+nC*.15+nD*.2+nE*.2;
+  const tol=nA*(.3/.8)+nB*(.15/.8)+nC*(.15/.8)+nD*(.2/.8);
+  return{A:nA,B:nB,C:nC,D:nD,E:nE,tol,cap:nE,f}
+}
+
+// ═══════════════════════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════════════════════
+function showRes(){
+  const s=compute(),x=t();
+  const tier=gT(s.f),tt=gT(s.tol),ct=gT(s.cap),rt=s.tol<=s.cap?tt:ct;
+  document.getElementById('res-title').textContent=x.resTitle;
+  const labels=x.secLabels;
+  const firstName=clientName.split(' ')[0]||clientName;
+
+  document.getElementById('rb').innerHTML=`
+    <div style="text-align:center;padding:28px 0 24px;border-bottom:1px solid var(--gray-light);margin-bottom:28px">
+      <div class="greeting">${x.greeting.replace('{name}',firstName)}</div>
+      <div class="score-circle" style="--cc:${rt.c}"><span class="score-big">${s.f.toFixed(1)}</span><span class="score-of">/ 5.0</span></div>
+      <div class="profile-badge" style="background:${rt.c}15;color:${rt.c}">${rt.p.toUpperCase()}</div>
+      <p class="rec-p">${x.recPort}</p>
+      <p class="rec-n">${rt.pt}</p>
+    </div>
+    <h3 class="bd-title">${x.breakdown}</h3>
+    ${[{k:"A",v:s.A,w:"30%"},{k:"B",v:s.B,w:"15%"},{k:"C",v:s.C,w:"15%"},{k:"D",v:s.D,w:"20%"},{k:"E",v:s.E,w:"20%"}].map((z,i)=>`<div class="bar-row"><div class="bar-hdr"><span class="bar-lbl">${z.k}. ${labels[i]}</span><span class="bar-val">${z.v.toFixed(2)} <span class="bar-w">(${z.w})</span></span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.min(z.v/5*100,100)}%"></div></div></div>`).join('')}
+    <div class="dual-box">
+      <h3 class="bd-title" style="margin:0 0 18px">${x.dualTitle}</h3>
+      <div class="dual-grid">
+        <div class="dual-col"><div class="dual-lbl">${x.tolerance}</div><div class="dual-num">${s.tol.toFixed(2)}</div><div class="dual-badge" style="background:${tt.c}15;color:${tt.c}">${tt.p}</div><div class="dual-sub">${x.tolSub}</div></div>
+        <div class="dual-sep"></div>
+        <div class="dual-col"><div class="dual-lbl">${x.capacity}</div><div class="dual-num">${s.cap.toFixed(2)}</div><div class="dual-badge" style="background:${ct.c}15;color:${ct.c}">${ct.p}</div><div class="dual-sub">${x.capSub}</div></div>
+      </div>
+      ${s.tol!==s.cap?`<p class="dual-note">${x.dualNote.replace('{p}',rt.p)}</p>`:''}
+    </div>
+    <div class="formula-box">(${s.A.toFixed(2)}×0.30) + (${s.B.toFixed(2)}×0.15) + (${s.C.toFixed(2)}×0.15) + (${s.D.toFixed(2)}×0.20) + (${s.E.toFixed(2)}×0.20) = <span class="formula-r">${s.f.toFixed(2)}</span></div>
+    <div class="cta-row">
+      <button class="btn-cta btn-primary" onclick="downloadPDF()">&#128196; ${x.btnDownload}</button>
+      <button class="btn-cta btn-secondary" onclick="scheduleCall()">&#128197; ${x.btnSchedule}</button>
+    </div>
+    <div style="text-align:center;margin-top:20px">
+      <button class="btn-cta btn-outline" onclick="restart()">&#8635; ${x.btnRestart}</button>
+    </div>
+    <p class="disclaimer">${x.disclaimer}</p>`;
+  sh('res');
+}
+
+// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════
+// SCHEDULE CALL (placeholder)
+// ═══════════════════════════════════════════════════
+function scheduleCall(){
+  // Redirect to contact page until Calendly is configured
+  window.location.href='https://www.atlaswealthlegacy.com/contact-us';
+}
+
+// ═══════════════════════════════════════════════════
+// PDF DOWNLOAD
+// ═══════════════════════════════════════════════════
+function downloadPDF(){
+  const s=compute(),x=t();
+  const tier=gT(s.f),tt=gT(s.tol),ct=gT(s.cap),rt=s.tol<=s.cap?tt:ct;
+  const labels=x.secLabels;
+  const firstName=clientName.split(' ')[0]||clientName;
+  let clientTier=1;
+  if(s.f>=4.2)clientTier=5;else if(s.f>=3.4)clientTier=4;else if(s.f>=2.6)clientTier=3;else if(s.f>=1.9)clientTier=2;
+
+  const portfolios=[
+    {m:"1A",n:"Anchor",g:1,sd:10.03,cagr:10.53},
+    {m:"1B",n:"Compass",g:1,sd:9.89,cagr:11.26},
+    {m:"2A",n:"Horizon",g:2,sd:12.07,cagr:12.71},
+    {m:"2B",n:"Meridian",g:2,sd:12.69,cagr:14.49},
+    {m:"3A",n:"Voyager",g:3,sd:15.82,cagr:18.05},
+    {m:"3B",n:"Navigator",g:3,sd:15.46,cagr:17.37},
+    {m:"4A",n:"Vanguard",g:4,sd:16.53,cagr:18.99},
+    {m:"4B",n:"Tradewind",g:4,sd:15.48,cagr:17.13},
+    {m:"4C",n:"Titan",g:4,sd:17.47,cagr:24.00},
+    {m:"4CP",n:"Prima",g:4,sd:15.41,cagr:18.39},
+    {m:"5A",n:"Apex",g:5,sd:17.18,cagr:19.85},
+    {m:"5B",n:"Summit",g:5,sd:16.44,cagr:18.34},
+    {m:"5C",n:"Frontier",g:5,sd:19.40,cagr:25.18}
+  ];
+  const voo={sd:14.98,cagr:14.60};
+  const tierColors={1:'#3B82F6',2:'#10B981',3:'#F59E0B',4:'#EF4444',5:'#8B5CF6'};
+  const tierNames=lang==='en'
+    ?{1:'Conservative',2:'Mod-Conservative',3:'Moderate',4:'Mod-Aggressive',5:'Aggressive'}
+    :{1:'Conservador',2:'Mod-Conservador',3:'Moderado',4:'Mod-Agresivo',5:'Agresivo'};
+  const legendData=lang==='en'
+    ?[{g:1,t:'Conservative: Anchor (1A), Compass (1B)'},{g:2,t:'Mod-Conservative: Horizon (2A), Meridian (2B)'},{g:3,t:'Moderate: Voyager (3A), Navigator (3B)'},{g:4,t:'Mod-Aggressive: Vanguard (4A), Tradewind (4B), Titan (4C), Prima (4CP)'},{g:5,t:'Aggressive: Apex (5A), Summit (5B), Frontier (5C)'}]
+    :[{g:1,t:'Conservador: Anchor (1A), Compass (1B)'},{g:2,t:'Mod-Conservador: Horizon (2A), Meridian (2B)'},{g:3,t:'Moderado: Voyager (3A), Navigator (3B)'},{g:4,t:'Mod-Agresivo: Vanguard (4A), Tradewind (4B), Titan (4C), Prima (4CP)'},{g:5,t:'Agresivo: Apex (5A), Summit (5B), Frontier (5C)'}];
+
+  const today=new Date().toLocaleDateString(lang==='es'?'es-ES':'en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  const msg1=lang==='en'
+    ?'Congratulations on completing your Investment Profile Assessment. By taking this step, you have joined a remarkably small group of individuals worldwide who truly understand the importance of aligning their investments with their personal risk profile.'
+    :'Felicidades por completar su Evaluación de Perfil de Inversión. Al dar este paso, se ha unido a un grupo extraordinariamente selecto de personas en el mundo que verdaderamente comprenden la importancia de alinear sus inversiones con su perfil personal de riesgo.';
+  const msg2=lang==='en'
+    ?'This decision reflects a level of financial awareness that goes far beyond the ordinary. Most people invest without ever understanding their true relationship with risk. You chose differently. And that single decision has the potential to positively impact not just your wealth, but the financial wellbeing of your family for generations to come.'
+    :'Esta decisión refleja un nivel de conciencia financiera que va mucho más allá de lo ordinario. La mayoría de las personas invierten sin jamás comprender su verdadera relación con el riesgo. Usted eligió diferente. Y esa sola decisión tiene el potencial de impactar positivamente no solo su patrimonio, sino el bienestar financiero de su familia durante generaciones.';
+  const msg3=lang==='en'
+    ?'At Atlas, we believe that true wealth management begins with understanding who you are as an investor. The results below are the foundation upon which we will build — or refine — your personalized investment strategy.'
+    :'En Atlas, creemos que la verdadera gestión patrimonial comienza por entender quién es usted como inversionista. Los resultados a continuación son el cimiento sobre el cual construiremos — o refinaremos — su estrategia de inversión personalizada.';
+
+  const scores=[{k:"A",v:s.A,w:"30%"},{k:"B",v:s.B,w:"15%"},{k:"C",v:s.C,w:"15%"},{k:"D",v:s.D,w:"20%"},{k:"E",v:s.E,w:"20%"}];
+
+  // Build the SVG for the efficient frontier chart
+  const svgW=560,svgH=340,pad={t:30,r:30,b:50,l:55};
+  const cW=svgW-pad.l-pad.r,cH=svgH-pad.t-pad.b;
+  const xMin=8,xMax=21,yMin=8,yMax=27;
+  function sx(v){return pad.l+(v-xMin)/(xMax-xMin)*cW}
+  function sy(v){return pad.t+cH-(v-yMin)/(yMax-yMin)*cH}
+
+  let svgParts=[];
+  svgParts.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto">`);
+  svgParts.push(`<rect width="${svgW}" height="${svgH}" fill="#FAFBFC" rx="6"/>`);
+
+  // Grid
+  for(let v=10;v<=26;v+=2){
+    const gy=sy(v);
+    svgParts.push(`<line x1="${pad.l}" y1="${gy}" x2="${svgW-pad.r}" y2="${gy}" stroke="#E8E8EC" stroke-width="0.5"/>`);
+    svgParts.push(`<text x="${pad.l-6}" y="${gy+3}" text-anchor="end" font-size="9" fill="#9CA3AF">${v}%</text>`);
+  }
+  for(let v=10;v<=20;v+=2){
+    const gx=sx(v);
+    svgParts.push(`<line x1="${gx}" y1="${pad.t}" x2="${gx}" y2="${pad.t+cH}" stroke="#E8E8EC" stroke-width="0.5"/>`);
+    svgParts.push(`<text x="${gx}" y="${pad.t+cH+16}" text-anchor="middle" font-size="9" fill="#9CA3AF">${v}%</text>`);
+  }
+
+  // Axes
+  svgParts.push(`<line x1="${pad.l}" y1="${pad.t}" x2="${pad.l}" y2="${pad.t+cH}" stroke="#1B2A4A" stroke-width="1"/>`);
+  svgParts.push(`<line x1="${pad.l}" y1="${pad.t+cH}" x2="${svgW-pad.r}" y2="${pad.t+cH}" stroke="#1B2A4A" stroke-width="1"/>`);
+
+  // Axis labels
+  svgParts.push(`<text x="${pad.l}" y="${pad.t-12}" font-size="8" fill="#6B7280" font-weight="600" letter-spacing="0.5">${lang==='en'?'ANNUALIZED RETURN (CAGR %)':'RETORNO ANUALIZADO (CAGR %)'}</text>`);
+  svgParts.push(`<text x="${svgW/2}" y="${svgH-6}" text-anchor="middle" font-size="8" fill="#6B7280" font-weight="600" letter-spacing="0.5">${lang==='en'?'RISK (Standard Deviation %)':'RIESGO (Desviación Estándar %)'}</text>`);
+
+  // Highlight zone for client tier
+  const tp=portfolios.filter(p=>p.g===clientTier);
+  if(tp.length>0){
+    const mnSD=Math.min(...tp.map(p=>p.sd))-1.2,mxSD=Math.max(...tp.map(p=>p.sd))+1.2;
+    const mnC=Math.min(...tp.map(p=>p.cagr))-1.5,mxC=Math.max(...tp.map(p=>p.cagr))+1.5;
+    const rx=sx(mnSD),ry=sy(mxC),rw=sx(mxSD)-sx(mnSD),rh=sy(mnC)-sy(mxC);
+    const tc=tierColors[clientTier];
+    svgParts.push(`<rect x="${rx}" y="${ry}" width="${rw}" height="${rh}" rx="6" fill="${tc}" fill-opacity="0.07" stroke="${tc}" stroke-width="1.5" stroke-opacity="0.35" stroke-dasharray="4,3"/>`);
+    svgParts.push(`<text x="${rx+rw/2}" y="${ry-5}" text-anchor="middle" font-size="9" font-weight="700" fill="${tc}">${lang==='en'?'YOUR PROFILE':'SU PERFIL'}</text>`);
+  }
+
+  // Frontier curve
+  const fPts=[{sd:9.89,c:11.26},{sd:12.69,c:14.49},{sd:15.41,c:18.39},{sd:15.82,c:18.05},{sd:16.53,c:18.99},{sd:17.47,c:24},{sd:19.4,c:25.18}];
+  const fPath=fPts.map((p,i)=>`${i===0?'M':'L'}${sx(p.sd).toFixed(1)},${sy(p.c).toFixed(1)}`).join(' ');
+  svgParts.push(`<path d="${fPath}" fill="none" stroke="#1B2A4A" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>`);
+
+  // VOO diamond
+  const vx=sx(voo.sd),vy=sy(voo.cagr);
+  svgParts.push(`<polygon points="${vx},${vy-6} ${vx+6},${vy} ${vx},${vy+6} ${vx-6},${vy}" fill="#D1D5DB" stroke="#9CA3AF" stroke-width="1"/>`);
+  svgParts.push(`<text x="${vx+9}" y="${vy-2}" font-size="8" font-weight="700" fill="#6B7280">VOO</text>`);
+  svgParts.push(`<text x="${vx+9}" y="${vy+7}" font-size="7" fill="#9CA3AF">(S&amp;P 500)</text>`);
+
+  // Portfolio dots
+  portfolios.forEach(p=>{
+    const cx=sx(p.sd),cy=sy(p.cagr);
+    const tc=tierColors[p.g];
+    const isCl=p.g===clientTier;
+    const r=isCl?5.5:4;
+    svgParts.push(`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${tc}" opacity="${isCl?1:0.8}"/>`);
+    if(isCl) svgParts.push(`<circle cx="${cx}" cy="${cy}" r="${r+2.5}" fill="none" stroke="${tc}" stroke-width="1.5" opacity="0.4"/>`);
+    // Label offset
+    let lx=cx+r+3,ly=cy+3;
+    if(p.m==='1A'){lx=cx-r-2;ly=cy+8;}
+    if(p.m==='4C'){ly=cy-5;}
+    if(p.m==='5C'){ly=cy-5;}
+    svgParts.push(`<text x="${lx}" y="${ly}" font-size="7.5" font-weight="${isCl?'700':'500'}" fill="${tc}">${p.m}</text>`);
+  });
+  svgParts.push('</svg>');
+  const chartSVG=svgParts.join('');
+
+  // Legend HTML
+  let legendHTML='';
+  legendData.forEach(li=>{
+    const isCl=li.g===clientTier;
+    const tc=tierColors[li.g];
+    const arrow=isCl?(lang==='en'?' ◀ Your Profile':' ◀ Su Perfil'):'';
+    legendHTML+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;${isCl?'font-weight:700':''}"><span style="width:10px;height:10px;border-radius:50%;background:${tc};flex-shrink:0;${isCl?'box-shadow:0 0 0 3px '+tc+'33':''}"></span><span style="font-size:8.5px;color:${isCl?tc:'#6B7280'}">${li.t}${arrow}</span></div>`;
+  });
+  // VOO legend
+  legendHTML+=`<div style="display:flex;align-items:center;gap:8px;margin-top:2px"><span style="width:10px;height:10px;background:#D1D5DB;transform:rotate(45deg);flex-shrink:0"></span><span style="font-size:8px;color:#9CA3AF">${lang==='en'?'VOO — S&P 500 Benchmark':'VOO — Benchmark S&P 500'} (14.60% CAGR, 14.98% StdDev)</span></div>`;
+
+  // Steps
+  const steps=lang==='en'
+    ?['Review your results and portfolio recommendation.','Schedule a consultation with your Atlas advisor to discuss your profile.','Together, we will select and customize the portfolio that best serves your goals.','Begin building your legacy with confidence.']
+    :['Revise sus resultados y la recomendación de portafolio.','Agende una consulta con su asesor Atlas para discutir su perfil.','Juntos, seleccionaremos y personalizaremos el portafolio ideal para sus metas.','Comience a construir su legado con confianza.'];
+
+  const barsHTML=scores.map((z,i)=>`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px"><span style="color:#1B2A4A;font-weight:600">${z.k}. ${labels[i]}</span><span style="color:#6B7280">${z.v.toFixed(2)} (${z.w})</span></div><div style="height:5px;background:#F1F5F9;border-radius:3px"><div style="height:100%;width:${Math.min(z.v/5*100,100)}%;background:linear-gradient(90deg,#1B2A4A,#2A3D66);border-radius:3px"></div></div></div>`).join('');
+
+  const dualDesc=lang==='en'
+    ?'Your final recommendation uses the lower of two independent axes to ensure your portfolio never exceeds your true comfort level.'
+    :'Su recomendación final usa el menor de dos ejes independientes para asegurar que su portafolio nunca exceda su verdadero nivel de comodidad.';
+
+  // ============= BUILD THE PRINT DOCUMENT =============
+  const w=window.open('','_blank','width=850,height=1100');
+  if(!w){alert(lang==='en'?'Please allow popups to download your PDF.':'Por favor permita popups para descargar su PDF.');return;}
+
+  w.document.write(`<!DOCTYPE html><html lang="${lang}"><head><meta charset="UTF-8"><title>Atlas Assessment — ${clientName}</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@page{size:letter;margin:20mm 22mm 22mm 22mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;color:#1E293B;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{page-break-after:always;position:relative;min-height:100vh;padding:0}
+.page:last-child{page-break-after:avoid}
+.footer{position:fixed;bottom:0;left:0;right:0;height:14mm;background:#1B2A4A;display:flex;align-items:center;justify-content:space-between;padding:0 22mm}
+.footer span{font-size:7.5pt;color:rgba(255,255,255,.5)}
+@media print{.footer{position:fixed;bottom:0}.no-print{display:none!important}}
+
+/* Typography */
+.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.navy{color:#1B2A4A}
+.gray{color:#6B7280}
+.light-gray{color:#94A3B8}
+.bold{font-weight:700}
+.center{text-align:center}
+
+/* Cover */
+.cover{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 14mm);text-align:center;padding:40px 20px}
+.cover-logo{font-family:'Cormorant Garamond',serif;font-size:32pt;font-weight:300;color:#1B2A4A;letter-spacing:14px}
+.cover-line{width:50px;height:1px;background:#1B2A4A;margin:14px auto}
+.cover-sub{font-size:8.5pt;color:#1B2A4A;letter-spacing:4px;text-transform:uppercase}
+.cover-tagline{font-family:'Cormorant Garamond',serif;font-size:10pt;font-style:italic;color:#6B7280;margin-top:8px}
+.kpi-row{display:flex;justify-content:center;gap:40px;margin-top:20px}
+.kpi-box{background:#F5F7FA;border-radius:6px;padding:12px 24px;text-align:center;min-width:100px}
+.kpi-num{font-size:18pt;font-weight:800;color:#1B2A4A}
+.kpi-label{font-size:7pt;color:#6B7280;margin-top:2px}
+
+/* Letter */
+.letter{padding:10px 0;font-size:10pt;color:#6B7280;line-height:1.7}
+.letter p{margin-bottom:10px}
+
+/* Results */
+.section-tag{font-size:8pt;letter-spacing:3px;color:#1B2A4A;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.section-line{width:30px;height:1px;background:#1B2A4A;margin-bottom:12px}
+.dual-grid{display:flex;gap:12px;margin-top:6px}
+.dual-col{flex:1;background:#F5F7FA;border-radius:6px;padding:12px;text-align:center}
+.dual-label{font-size:7.5pt;color:#6B7280;letter-spacing:1px;text-transform:uppercase}
+.dual-val{font-size:16pt;font-weight:800;color:#1B2A4A;margin:4px 0 2px}
+.dual-profile{font-size:8pt;font-weight:600}
+
+/* Chart */
+.chart-section{padding-top:8px}
+.legend-wrap{margin-top:10px}
+
+/* Steps */
+.step{display:flex;gap:10px;margin-bottom:6px;align-items:flex-start}
+.step-num{width:20px;height:20px;border-radius:50%;background:#1B2A4A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:8pt;font-weight:700;flex-shrink:0}
+.step-text{font-size:9pt;color:#6B7280;line-height:1.5;padding-top:2px}
+
+.disclaimer{font-size:7pt;color:#94A3B8;line-height:1.5;border-top:1px solid #E5E7EB;padding-top:12px;margin-top:20px}
+
+/* Print button */
+.print-bar{background:#F5F7FA;padding:12px 20px;display:flex;justify-content:center;gap:12px;border-bottom:1px solid #E5E7EB}
+.print-btn{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;padding:10px 28px;border-radius:6px;cursor:pointer;border:none;transition:all .2s}
+.print-primary{background:#1B2A4A;color:#fff}.print-primary:hover{background:#2A3D66}
+.print-secondary{background:#fff;color:#1B2A4A;border:2px solid #1B2A4A}.print-secondary:hover{background:#F5F7FA}
+</style></head><body>
+
+<!-- PRINT BAR -->
+<div class="print-bar no-print">
+  <button class="print-btn print-primary" onclick="window.print()">${lang==='en'?'💾 Save as PDF / Print':'💾 Guardar como PDF / Imprimir'}</button>
+  <button class="print-btn print-secondary" onclick="window.close()">${lang==='en'?'Close':'Cerrar'}</button>
+</div>
+
+<!-- PAGE 1: COVER -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-logo">A &nbsp;T &nbsp;L &nbsp;A &nbsp;S</div>
+    <div class="cover-line"></div>
+    <div class="cover-sub">PRIVATE WEALTH &amp; LEGACY OFFICE</div>
+    <div class="cover-tagline">Building Legacies. Preserving Wealth.</div>
+
+    <div style="margin-top:50px">
+      <div class="serif navy" style="font-size:18pt;font-weight:600">${x.wTitle}</div>
+      <div class="navy" style="font-size:11pt;margin-top:4px">${x.wTitle2}</div>
+    </div>
+
+    <div style="margin-top:36px">
+      <div class="gray" style="font-size:8pt">${lang==='en'?'Prepared for':'Preparado para'}</div>
+      <div class="navy bold" style="font-size:13pt;margin-top:4px">${clientName}</div>
+      ${clientEmail?`<div class="gray" style="font-size:9pt;margin-top:2px">${clientEmail}</div>`:''}
+      <div class="gray" style="font-size:9pt;margin-top:4px">${today}</div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-box"><div class="kpi-num">${s.f.toFixed(1)}</div><div class="kpi-label">${lang==='en'?'COMPOSITE SCORE':'PUNTAJE COMPUESTO'}</div></div>
+      <div class="kpi-box"><div class="kpi-num" style="font-size:13pt">${rt.p.toUpperCase()}</div><div class="kpi-label">${lang==='en'?'RISK PROFILE':'PERFIL DE RIESGO'}</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: LETTER + RESULTS -->
+<div class="page" style="padding:0 4px">
+  <div class="serif navy" style="font-size:16pt;font-weight:600;margin-bottom:8px">${x.greeting.replace('{name}',firstName)},</div>
+
+  <div class="letter">
+    <p>${msg1}</p>
+    <p>${msg2}</p>
+    <p>${msg3}</p>
+  </div>
+
+  <div style="border-top:1px solid #E5E7EB;margin:14px 0 12px"></div>
+
+  <div class="section-tag">${lang==='en'?'YOUR RESULTS':'SUS RESULTADOS'}</div>
+  <div class="section-line"></div>
+
+  <div class="center" style="margin-bottom:16px">
+    <div style="width:90px;height:90px;border-radius:50%;border:3px solid ${rt.c};margin:0 auto 8px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <span style="font-size:26pt;font-weight:800;color:#1B2A4A">${s.f.toFixed(1)}</span>
+      <span style="font-size:8pt;color:#6B7280">/ 5.0</span>
+    </div>
+    <span style="display:inline-block;padding:4px 18px;border-radius:14px;font-size:10pt;font-weight:700;background:${rt.c}15;color:${rt.c}">${rt.p.toUpperCase()}</span>
+    <div style="font-size:9pt;color:#6B7280;margin-top:8px">${x.recPort}</div>
+    <div style="font-size:10pt;font-weight:600;color:#1B2A4A;margin-top:2px">${rt.pt}</div>
+  </div>
+
+  <div class="section-tag">${x.breakdown.toUpperCase()}</div>
+  <div style="margin:6px 0 14px">${barsHTML}</div>
+
+  <div class="section-tag">${x.dualTitle.toUpperCase()}</div>
+  <div class="dual-grid">
+    <div class="dual-col">
+      <div class="dual-label">${x.tolerance}</div>
+      <div class="dual-val">${s.tol.toFixed(2)}</div>
+      <div class="dual-profile" style="color:${tt.c}">${tt.p}</div>
+      <div style="font-size:7pt;color:#9CA3AF;margin-top:2px">${x.tolSub}</div>
+    </div>
+    <div class="dual-col">
+      <div class="dual-label">${x.capacity}</div>
+      <div class="dual-val">${s.cap.toFixed(2)}</div>
+      <div class="dual-profile" style="color:${ct.c}">${ct.p}</div>
+      <div style="font-size:7pt;color:#9CA3AF;margin-top:2px">${x.capSub}</div>
+    </div>
+  </div>
+  ${s.tol!==s.cap?`<div style="font-size:8pt;color:#6B7280;text-align:center;margin-top:8px;font-style:italic">${x.dualNote.replace('{p}',rt.p)}</div>`:''}
+
+  <div style="background:#FAFBFC;border:1px solid #E5E7EB;border-radius:6px;padding:8px 12px;margin-top:12px;text-align:center;font-family:monospace;font-size:8pt;color:#6B7280">
+    (${s.A.toFixed(2)}×0.30) + (${s.B.toFixed(2)}×0.15) + (${s.C.toFixed(2)}×0.15) + (${s.D.toFixed(2)}×0.20) + (${s.E.toFixed(2)}×0.20) = <strong style="color:#1B2A4A;font-size:10pt">${s.f.toFixed(2)}</strong>
+  </div>
+</div>
+
+<!-- PAGE 3: EFFICIENT FRONTIER -->
+<div class="page" style="padding:0 4px">
+  <div class="section-tag">${lang==='en'?'ATLAS EFFICIENT FRONTIER':'FRONTERA EFICIENTE ATLAS'}</div>
+  <div class="section-line"></div>
+  <div class="serif navy" style="font-size:13pt;font-weight:600;margin-bottom:4px">${lang==='en'?'Where Your Profile Fits':'Dónde Encaja Su Perfil'}</div>
+  <div style="font-size:8pt;color:#6B7280;line-height:1.6;margin-bottom:14px">${lang==='en'?'This chart plots all 13 Atlas model portfolios on a risk-return map. The highlighted area shows the portfolio group best suited to your risk profile. Benchmark: VOO (S&P 500).':'Este gráfico ubica los 13 portafolios modelo de Atlas en un mapa riesgo-retorno. El área resaltada muestra el grupo de portafolios que mejor se ajusta a su perfil de riesgo. Benchmark: VOO (S&P 500).'}</div>
+
+  <div class="chart-section">${chartSVG}</div>
+
+  <div class="legend-wrap">
+    <div style="font-size:7.5pt;font-weight:700;color:#1B2A4A;letter-spacing:2px;margin-bottom:6px">${lang==='en'?'PORTFOLIO GROUPS':'GRUPOS DE PORTAFOLIOS'}</div>
+    ${legendHTML}
+  </div>
+
+  <div style="border-top:1px solid #E5E7EB;margin:20px 0 14px"></div>
+
+  <div class="section-tag">${lang==='en'?'NEXT STEPS':'PRÓXIMOS PASOS'}</div>
+  <div class="section-line"></div>
+  ${steps.map((st,i)=>`<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${st}</div></div>`).join('')}
+
+  <div class="disclaimer">
+    <strong>${lang==='en'?'LEGAL DISCLAIMER':'AVISO LEGAL'}</strong><br>
+    ${x.disclaimer}
+  </div>
+</div>
+
+<div class="footer"><span>Atlas Private Wealth &amp; Legacy Office</span><span>www.atlaswealthlegacy.com</span></div>
+</body></html>`);
+  w.document.close();
+}
+// ═══════════════════════════════════════════════════
+// RESTART
+// ═══════════════════════════════════════════════════
+function restart(){ans={D1:100000};ci=0;sh('welcome');updateWelcome()}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',function(){
+  updateWelcome();
+  document.getElementById('inp-name').addEventListener('input',validateWelcome);
+  document.getElementById('inp-email').addEventListener('input',validateWelcome);
+  // Initialize back button texts
+  const backText=document.getElementById('back-text');
+  const backTextApp=document.getElementById('back-text-app');
+  if(backText) backText.textContent=t().backToAtlas;
+  if(backTextApp) backTextApp.textContent=t().back;
+});
+</script>
+</body>
+</html>

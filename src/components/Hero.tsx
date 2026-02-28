@@ -81,6 +81,13 @@ export default function Hero() {
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <Link
+              href="/assessment"
+              className="inline-flex items-center gap-2 bg-atlas-dark px-8 py-3 text-xs font-serif tracking-[0.2em] uppercase text-atlas-primary transition-all duration-300 hover:bg-atlas-dark/90 hover:shadow-lg group no-underline"
+            >
+              INVESTMENT PROFILE ASSESSMENT
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </Link>
+            <Link
               href="https://www.atlaswealthlegacy.com/contact-us"
               className="inline-flex items-center gap-2 border border-atlas-dark px-8 py-3 text-xs font-serif tracking-[0.2em] uppercase text-atlas-dark transition-all duration-300 hover:bg-atlas-dark hover:text-atlas-primary group no-underline"
             >
