@@ -61,8 +61,6 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
 .topbar{background:var(--navy);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:90}
 .topbar-logo{font-family:var(--serif);font-size:17px;color:var(--white);letter-spacing:6px;font-weight:300}
 .topbar-info{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1px}
-.back-btn{font-size:11px;color:rgba(255,255,255,.7);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s;cursor:pointer}
-.back-btn:hover{color:var(--white)}
 .progress-wrap{width:100%;height:3px;background:var(--gray-light);position:sticky;top:46px;z-index:89}
 .progress-bar{height:100%;background:var(--navy);transition:width .6s cubic-bezier(.4,0,.2,1)}
 
@@ -200,12 +198,6 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
   <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
 </div>
 
-<!-- Back to Home Button -->
-<a href="/" class="back-btn" style="position:fixed;top:16px;left:16px;z-index:200;background:rgba(255,255,255,.95);padding:8px 16px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.1);backdrop-filter:blur(8px);color:var(--navy);font-weight:600">
-  <span>←</span>
-  <span id="back-text">Back to Atlas</span>
-</a>
-
 <!-- ==================== WELCOME ==================== -->
 <div id="welcome" class="screen active">
   <div class="welcome">
@@ -238,10 +230,6 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
 <!-- ==================== ASSESSMENT ==================== -->
 <div id="app" class="screen">
   <div class="topbar">
-    <a href="/" class="back-btn">
-      <span>←</span>
-      <span id="back-text-app">Back</span>
-    </a>
     <span class="topbar-logo">ATLAS</span>
     <span class="topbar-info" id="ti"></span>
   </div>
@@ -290,8 +278,6 @@ const TX = {
     prev: "← Back",
     next: "Next →",
     seeResults: "See Results",
-    backToAtlas: "Back to Atlas",
-    back: "Back",
     sectionOf: "Section {s} of E",
     introLabel: "Introduction",
     resTitle: "Assessment Results",
@@ -399,8 +385,6 @@ const TX = {
     prev: "← Anterior",
     next: "Siguiente →",
     seeResults: "Ver Resultados",
-    backToAtlas: "Volver a Atlas",
-    back: "Volver",
     sectionOf: "Sección {s} de E",
     introLabel: "Introducción",
     resTitle: "Resultados de la Evaluación",
@@ -474,9 +458,9 @@ const TX = {
          opts:[{l:"a",t:"Sí, múltiples obligaciones mayores en 3–5 años.",p:1},{l:"b",t:"Sí, al menos una obligación significativa dentro de 5 años.",p:2},{l:"c",t:"Algunas obligaciones moderadas, pero manejables.",p:3},{l:"d",t:"Solo obligaciones menores. Gastos futuros ya cubiertos.",p:4},{l:"e",t:"Sin obligaciones significativas. Capital completamente discrecional.",p:5}]}
       ]},
     tiers:[
-      {mn:1,mx:1.8,p:"Conservador",pt:"Atlas Anchor (1A) · Compass (1B)",c:"#3B82F6"},
-      {mn:1.9,mx:2.5,p:"Mod-Conservador",pt:"Atlas Horizon (2A) · Meridian (2B)",c:"#10B981"},
-      {mn:2.6,mx:3.3,p:"Moderado",pt:"Atlas Voyager (3A) · Navigator (3B)",c:"#F59E0B"},
+      {mn:1,mx:1.8,p:"Conservative",pt:"Atlas Anchor (1A) · Compass (1B)",c:"#3B82F6"},
+      {mn:1.9,mx:2.5,p:"Mod-Conservative",pt:"Atlas Horizon (2A) · Meridian (2B)",c:"#10B981"},
+      {mn:2.6,mx:3.3,p:"Moderate",pt:"Atlas Voyager (3A) · Navigator (3B)",c:"#F59E0B"},
       {mn:3.4,mx:4.1,p:"Mod-Agresivo",pt:"Vanguard (4A) · Tradewind (4B) · Titan (4C) · Prima (4CP)",c:"#EF4444"},
       {mn:4.2,mx:5,p:"Agresivo",pt:"Atlas Apex (5A) · Summit (5B) · Frontier (5C)",c:"#8B5CF6"}
     ],
@@ -486,6 +470,44 @@ const TX = {
 
 // B pairs (shared — numbers are the same in both languages)
 const BPAIRS=[{id:1,sw:"$1,000",sl:"$800",rw:"$1,800",rl:"–$200"},{id:2,sw:"$1,000",sl:"$800",rw:"$2,500",rl:"–$400"},{id:3,sw:"$1,000",sl:"$800",rw:"$3,500",rl:"–$600"},{id:4,sw:"$1,000",sl:"$800",rw:"$4,500",rl:"–$800"},{id:5,sw:"$1,000",sl:"$800",rw:"$6,000",rl:"–$1,000"},{id:6,sw:"$1,000",sl:"$800",rw:"$7,500",rl:"–$1,500"},{id:7,sw:"$1,000",sl:"$800",rw:"$9,000",rl:"–$2,000"},{id:8,sw:"$1,000",sl:"$800",rw:"$11,000",rl:"–$2,500"},{id:9,sw:"$1,000",sl:"$800",rw:"$13,500",rl:"–$3,000"},{id:10,sw:"$1,000",sl:"$800",rw:"$16,000",rl:"–$3,500"}];
+
+// ═══════════════════════════════════════════════════
+// GOOGLE SHEETS INTEGRATION
+// ═══════════════════════════════════════════════════
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby0ZJI4nbdXrlrr5Tys4efGJbfHRT_3yc6KiNlkG_FAgKuvimq5AsooT5LzOliGTLPx/exec';
+
+async function saveToGoogleSheets(scores, tier) {
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: clientName,
+        email: clientEmail,
+        language: lang === 'en' ? 'English' : 'Español',
+        finalScore: scores.f.toFixed(2),
+        riskProfile: tier.p,
+        portfolios: tier.pt,
+        scores: {
+          A: scores.A.toFixed(2),
+          B: scores.B,
+          C: scores.C,
+          D: scores.D.toFixed(2),
+          E: scores.E.toFixed(2)
+        },
+        tolerance: scores.tol.toFixed(2),
+        answers: ans
+      })
+    });
+    
+    console.log('✅ Datos enviados a Google Sheets correctamente');
+    return true;
+  } catch (error) {
+    console.error('❌ Error al enviar a Google Sheets:', error);
+    return false;
+  }
+}
 
 // ═══════════════════════════════════════════════════
 // STATE
@@ -505,11 +527,6 @@ function setLang(l){
   document.getElementById('btn-es').classList.toggle('active',l==='es');
   document.documentElement.lang=l;
   updateWelcome();
-  // Update back buttons
-  const backText=document.getElementById('back-text');
-  const backTextApp=document.getElementById('back-text-app');
-  if(backText) backText.textContent=t().backToAtlas;
-  if(backTextApp) backTextApp.textContent=t().back;
   // If in assessment, re-render
   if(document.getElementById('app').classList.contains('active')) render();
 }
@@ -611,6 +628,10 @@ function compute(){
 function showRes(){
   const s=compute(),x=t();
   const tier=gT(s.f),tt=gT(s.tol),ct=gT(s.cap),rt=s.tol<=s.cap?tt:ct;
+  
+  // Guardar en Google Sheets
+  saveToGoogleSheets(s, rt);
+  
   document.getElementById('res-title').textContent=x.resTitle;
   const labels=x.secLabels;
   const firstName=clientName.split(' ')[0]||clientName;
@@ -628,9 +649,18 @@ function showRes(){
     <div class="dual-box">
       <h3 class="bd-title" style="margin:0 0 18px">${x.dualTitle}</h3>
       <div class="dual-grid">
-        <div class="dual-col"><div class="dual-lbl">${x.tolerance}</div><div class="dual-num">${s.tol.toFixed(2)}</div><div class="dual-badge" style="background:${tt.c}15;color:${tt.c}">${tt.p}</div><div class="dual-sub">${x.tolSub}</div></div>
-        <div class="dual-sep"></div>
-        <div class="dual-col"><div class="dual-lbl">${x.capacity}</div><div class="dual-num">${s.cap.toFixed(2)}</div><div class="dual-badge" style="background:${ct.c}15;color:${ct.c}">${ct.p}</div><div class="dual-sub">${x.capSub}</div></div>
+        <div class="dual-col">
+          <div class="dual-label">${x.tolerance}</div>
+          <div class="dual-val">${s.tol.toFixed(2)}</div>
+          <div class="dual-profile" style="color:${tt.c}">${tt.p}</div>
+          <div style="font-size:7pt;color:#9CA3AF;margin-top:2px">${x.tolSub}</div>
+        </div>
+        <div class="dual-col">
+          <div class="dual-label">${x.capacity}</div>
+          <div class="dual-val">${s.cap.toFixed(2)}</div>
+          <div class="dual-profile" style="color:${ct.c}">${ct.p}</div>
+          <div style="font-size:7pt;color:#9CA3AF;margin-top:2px">${x.capSub}</div>
+        </div>
       </div>
       ${s.tol!==s.cap?`<p class="dual-note">${x.dualNote.replace('{p}',rt.p)}</p>`:''}
     </div>
@@ -647,12 +677,14 @@ function showRes(){
 }
 
 // ═══════════════════════════════════════════════════
-// ═══════════════════════════════════════════════════
 // SCHEDULE CALL (placeholder)
 // ═══════════════════════════════════════════════════
 function scheduleCall(){
-  // Redirect to contact page until Calendly is configured
-  window.location.href='https://www.atlaswealthlegacy.com/contact-us';
+  // REPLACE THIS URL with your Calendly or booking link
+  // window.open('https://calendly.com/your-link','_blank');
+  alert(lang==='en'
+    ? 'To enable scheduling, replace the URL in the scheduleCall() function with your Calendly or booking link.\n\nExample: https://calendly.com/your-name'
+    : 'Para activar el agendamiento, reemplace la URL en la función scheduleCall() con su enlace de Calendly.\n\nEjemplo: https://calendly.com/su-nombre');
 }
 
 // ═══════════════════════════════════════════════════
@@ -802,7 +834,7 @@ function downloadPDF(){
   if(!w){alert(lang==='en'?'Please allow popups to download your PDF.':'Por favor permita popups para descargar su PDF.');return;}
 
   w.document.write(`<!DOCTYPE html><html lang="${lang}"><head><meta charset="UTF-8"><title>Atlas Assessment — ${clientName}</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 @page{size:letter;margin:20mm 22mm 22mm 22mm}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -988,11 +1020,6 @@ document.addEventListener('DOMContentLoaded',function(){
   updateWelcome();
   document.getElementById('inp-name').addEventListener('input',validateWelcome);
   document.getElementById('inp-email').addEventListener('input',validateWelcome);
-  // Initialize back button texts
-  const backText=document.getElementById('back-text');
-  const backTextApp=document.getElementById('back-text-app');
-  if(backText) backText.textContent=t().backToAtlas;
-  if(backTextApp) backTextApp.textContent=t().back;
 });
 </script>
 </body>
