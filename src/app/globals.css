@@ -31,6 +31,8 @@
 
 html {
   scroll-behavior: smooth;
+  min-height: 100vh;
+  height: 100%;
 }
 
 * {
@@ -39,10 +41,27 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: var(--background) !important;
   color: var(--foreground);
   font-family: 'Source Sans 3', system-ui, sans-serif;
   antialiased: true;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+}
+
+/* Override Webflow/Devlink background */
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
+
+main {
+  flex: 1;
+  min-height: calc(100vh - 80px);
+  background: var(--background);
 }
 
 @keyframes fadeIn {

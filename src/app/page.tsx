@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main>
+      <main className="flex-1 bg-atlas-primary">
         <Hero />
         <Principles />
         <WhatIsAtlas />

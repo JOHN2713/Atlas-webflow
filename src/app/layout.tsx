@@ -29,16 +29,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className="h-full">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`${sourceSans.variable} ${ptSerif.variable} antialiased bg-atlas-primary text-atlas-dark`}
+        className={`${sourceSans.variable} ${ptSerif.variable} antialiased bg-atlas-primary text-atlas-dark min-h-screen flex flex-col`}
       >
         <DevLinkProvider>
-          {children}
+          <div className="flex-1 flex flex-col min-h-screen bg-atlas-primary">
+            {children}
+          </div>
         </DevLinkProvider>
       </body>
     </html>

@@ -7,7 +7,7 @@ export default function Philosophy() {
   return (
     <>
       <Navigation />
-      <main>
+      <main className="flex-1 bg-atlas-primary">
         {/* Hero Section */}
         <section className="pt-32 pb-16 md:pt-40 md:pb-12">
           <div className="container mx-auto max-w-5xl px-6 md:px-12">
